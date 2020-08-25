@@ -23,6 +23,9 @@ gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'pundit'
 gem 'acts-as-taggable-on', '~> 6.0'
+gem 'nokogiri'
+gem 'pry', '~> 0.13.1'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
