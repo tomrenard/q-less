@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="card-product">
+  <img src="">
+  <div class="card-trip-infos">
+    <% @queue_estimations.each do |queue_estimation| %>
+<!--       <% if queue_estimation.user  ==  current_user %> -->
+      <h2> Event: <%=event.title%> </h2>
+        <ul>
+          <li> Estimated waiting time: <%=queue_estimation.waiting_time %>€</li>
+          <li></li>
+        </ul>
+        <% end %>
+      <% end %>
+  </div>
+</div>
+</div>
+<br>
