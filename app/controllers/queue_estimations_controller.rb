@@ -3,12 +3,13 @@ class QueueEstimationsController < ApplicationController
   before_action :set_event, only: [:new, :create]
 
   def index
-    @queue_estimations = QueueEstimation.all
+    @queue_estimations = QueueEstimation.last(3)
     # policy_scope().where(user_id: current_user.id) for pundit
   end
 
   def show
-    @queue_estimation = QueueEstimation.find(params[:id])
+    @queue_estimation = QueueEstimation.last
+    # is this how we want it??
     # authorize @queue_estimation
   end
 

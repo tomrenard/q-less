@@ -1,16 +1,13 @@
 <div class="container">
   <div class="card-product">
-  <img src="">
+  <img src="https://s3-eu-west-1.amazonaws.com/de-asitcp-ir-bz-data-prod/data/uploads/2017/02/20170218195449_1487446219.jpg">
   <div class="card-trip-infos">
     <% @queue_estimations.each do |queue_estimation| %>
-<!--       <% if queue_estimation.user  ==  current_user %> -->
-      <h2> Event: <%=event.title%> </h2>
+      <h2> <%=queue_estimation.event.title%> </h2>
         <ul>
-          <li> Estimated waiting time: <%=queue_estimation.waiting_time %>€</li>
-          <li></li>
+          <li> Estimated waiting time: <%=queue_estimation.waiting_time %> minutes</li>
         </ul>
         <% end %>
-      <% end %>
   </div>
 </div>
 </div>
