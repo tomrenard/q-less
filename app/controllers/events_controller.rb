@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    set_sevent
+    set_event
   end
 
   def new
@@ -23,7 +23,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    set_sevent
+    set_event
       if @event.destroy
         flash[:notice] = "\"#{@event.title}\" was successfully deleted."
         redirect_to events_path
@@ -35,11 +35,11 @@ class EventsController < ApplicationController
 
   private
 
-  def set_sevent
+  def set_event
     @event = Event.find(params[:id])
   end
 
   def event_params
-    params.require(:event).permit(:title, :description, :category, :start_time, :end_time, :address, :price, :line_up)
+    params.require(:event).permit(:title, :description, :category, :start_time, :end_time, :address, :price, :line_up, :location, :address, :photo)
   end
 end
