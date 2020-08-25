@@ -1,8 +1,8 @@
-class EventsController < ApplicationController
+ class EventsController < ApplicationController
  # before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @events = Event.all
+    @events = policy_scope(Event)
   end
 
   def show
