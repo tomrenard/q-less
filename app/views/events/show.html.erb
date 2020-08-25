@@ -1,0 +1,28 @@
+<main>
+
+  <div>
+    <% if @event.photo.attached? %>
+      <div><%= cl_image_tag @event.photo.key, height: 300, width: 400, crop: :fit %></div>
+    <% end %>
+ </div>
+
+  <div>
+
+    <div>
+      <h1><%= @event.title %></h1>
+      <h3><%= @event.category %></h3>
+      <h3><%= @event.location %></h3>
+      <p><%= @event.address %></p>
+      <p><%= @event.lign_up %></p>
+      <p><%= @event.description %></p>
+      <h3><%= @event.price %></h3>
+      <h3><%= @event.start_time %></h3>
+      <h3><%= @event.end_time %></h3>
+    </div>
+
+    <div>
+        <p><%= link_to "Delete my event", event_path(@event), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-danger'%></p>
+    </div>
+
+    </div>
+</main>
