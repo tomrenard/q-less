@@ -8,7 +8,8 @@ class QueueEstimationsController < ApplicationController
   end
 
   def show
-    @queue_estimation = QueueEstimation.last
+    @queue_estimation = QueueEstimation.find(params[:id])
+    # @queue_estimation = QueueEstimation.last
     # is this how we want it??
     # authorize @queue_estimation
   end
