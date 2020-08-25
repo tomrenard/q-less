@@ -3,32 +3,50 @@ require 'open-uri'
 require 'pry'
 
 class Scraper
-  def scrape_events_url
-    events_list = []
-
-    berlin_events_url = 'https://www.residentadvisor.net/events/de/berlin/month/2020-08-25'
-    html = open(berlin_events_url)
+  def scrape_event_urls
+    berlin_url = 'https://www.residentadvisor.net/events/de/berlin/month/2020-08-25'
+    html = open(berlin_url)
     doc = Nokogiri::HTML(html)
-    events = doc.css('div.bbox')
+    events = doc.css('div.bbox').css('.event-title').css('a')
+    event_urls = []
 
     events.each do |event|
-      event_name = event.css('.event-title>a').text
-      event_location = event.css('.event-title span a').text
+      url = event.attribute('href').value
+      event_urls << url
+    end
 
-      p events_infos = {
-        :event_name => event_name,
-        :event_location => event_location
-      }
+    scrape_event_pages(event_urls)
+  end
+
+  def scrape_event_pages(event_urls)
+    events_list = []
+    event_urls.each do |event_url|
+      url = "https://www.residentadvisor.net#{event_url}"
+      html = open(url)
+      doc = Nokogiri::HTML(html)
+
+      name = doc.css('#sectionHead').css('.add-space h1').text
+      # location = doc.css('div.plus8').css('.cat-rev > a').text
+      # location =
+      # address =
+      # img_link =
+
+
+      events_list << name
+      # events_list << location
+       # address, location, address, img_link
+      p events_list
     end
   end
 
-  # def create_event(events_info)
-  #   events_infos.each do |events_info|
-  #     name =
-  #     location =
-  #   end
+  # def create_events(events_list)
+  #   events_list.each do |event|
+  #     name = event.css()
+  #     location = event.css
+
   # end
+
 end
 
 scrape = Scraper.new
-scrape.scrape_event
+p scrape.scrape_event_urls
