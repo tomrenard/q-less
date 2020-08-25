@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm">
-      <% @event.each do |event| %>
+      <% @events.each do |event| %>
         <div class="card-product">
             <% if event.photo.attached? %>
               <div class="event-left-image"><%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fit %></div>
