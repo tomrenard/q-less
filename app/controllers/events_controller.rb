@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:new, :create]
+ # before_action :authenticate_user!, only: [:new, :create]
 
   def index
     @events = Event.all
@@ -9,14 +9,12 @@ class EventsController < ApplicationController
     set_event
   end
 
-  def update
-    set_event
-    @event.update(event_params)
-    redirect_to events_path
+  def edit
   end
 
   def new
     @event = Event.new
+    authorize @event
   end
 
   def create
@@ -24,6 +22,14 @@ class EventsController < ApplicationController
     @event.user = current_user
     if @event.save
       redirect_to events_path
+    else
+      render :new
+    end
+  end
+
+  def update
+    if @event.update(event_params)
+      redirect_to @event, notice: "#{@event.title} was succesfully updated"
     else
       render :new
     end
@@ -38,12 +44,14 @@ class EventsController < ApplicationController
         flash.now[:alert] = "There was an error deleting the event."
         render :show
       end
+    authorize @event
   end
 
   private
 
   def set_event
     @event = Event.find(params[:id])
+    authorize @event
   end
 
   def event_params
