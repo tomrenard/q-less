@@ -4,9 +4,7 @@ class QueueEstimationsController < ApplicationController
 
   def index
     @queue_estimations = QueueEstimation.all
-    # is syntax right?
-    # do we need policy scope and to identify current user?
-    # policy_scope().where(user_id: current_user.id)
+    # policy_scope().where(user_id: current_user.id) for pundit
   end
 
   def show
@@ -16,14 +14,14 @@ class QueueEstimationsController < ApplicationController
 
   def new
     @queue_estimation = QueueEstimation.new
-    authorize @queue_estimation
+    # authorize @queue_estimation
   end
 
   def create
     @queue_estimation = QueueEstimation.create(queue_params)
     @queue_estimation.user = current_user
     @queue_estimation.event = @event
-    authorize @queue_estimation
+    # authorize @queue_estimation
     if @queue_estimation.save
       redirect_to queue_estimation_path(@queue_estimation)
     else
@@ -32,8 +30,14 @@ class QueueEstimationsController < ApplicationController
   end
 
   def destroy
-    @queue_estimation.destroy
-    redirect_to root_path
+    set_event
+    if @queue_estimation.destroy
+      flash[:notice] = "Your estimation was successfully deleted."
+      redirect_to event_path(@event)
+    else
+      flash.now[:alert] = "There was an error deleting your estimation."
+      render :show
+    end
   end
 
   private
