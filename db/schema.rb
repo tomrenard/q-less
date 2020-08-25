@@ -10,10 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_24_140813) do
+ActiveRecord::Schema.define(version: 2020_08_25_094624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "category"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string "address"
+    t.integer "price"
+    t.text "line_up"
+    t.bigint "user_id", null: false
+    t.string "location"
+    t.integer "average_queue"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "queue_estimations", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.integer "waiting_time"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_queue_estimations_on_event_id"
+    t.index ["user_id"], name: "index_queue_estimations_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +54,7 @@ ActiveRecord::Schema.define(version: 2020_08_24_140813) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "events", "users"
+  add_foreign_key "queue_estimations", "events"
+  add_foreign_key "queue_estimations", "users"
 end
