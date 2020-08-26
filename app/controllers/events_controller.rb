@@ -17,6 +17,7 @@
   end
 
   def edit
+    set_event
   end
 
   def new
@@ -36,12 +37,12 @@
   end
 
   def update
+    set_event
     if @event.update(event_params)
       redirect_to @event, notice: "#{@event.title} was succesfully updated"
     else
       render :new
     end
-    authorize @event
   end
 
   def destroy
@@ -53,7 +54,6 @@
         flash.now[:alert] = "There was an error deleting the event."
         render :show
       end
-    authorize @event
   end
 
   private

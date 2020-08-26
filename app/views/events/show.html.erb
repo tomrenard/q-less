@@ -24,7 +24,7 @@
         <p><%= link_to "Delete my event", event_path(@event), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-danger'%></p>
     <% end %>
     <% if policy(Event).edit? %>
-        <p><%= link_to "Update my event", event_path(@event), method: :update, data: { confirm: "Are you sure?"}, class: 'btn btn-warning'%></p>
+        <p><%= link_to "Update my event", edit_event_path(@event), class: 'btn btn-info'%></p>
     <% end %>
 
     </div>
