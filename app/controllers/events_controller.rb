@@ -14,6 +14,7 @@
 
   def show
     set_event
+    @related_events = @event.find_related_tags
   end
 
   def edit
@@ -55,7 +56,15 @@
         render :show
       end
   end
-
+  
+  def tagged
+    if params[:tag].present?
+      @events = Event.tagged_with(params[:tag])
+    else
+      @events = Event.all
+    end
+  end
+   
   private
 
   def set_event
@@ -63,6 +72,6 @@
     authorize @event
   end
   def event_params
-    params.require(:event).permit(:title, :description, :category, :start_time, :end_time, :address, :price, :line_up, :location, :photo)
+    params.require(:event).permit(:title, :description, :category, :start_time, :end_time, :address, :price, :line_up, :location, :photo, :tag_list)
   end
 end
