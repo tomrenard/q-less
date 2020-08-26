@@ -2,6 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'pry'
 require 'resolv-replace'
+require 'date'
 
 class Scraper
   def scrape_event_urls
@@ -28,17 +29,12 @@ class Scraper
       title = doc.css('#sectionHead h1').text
       location = doc.css('#detail').css('.wide').css('.cat-rev').text.gsub("\n", "")
 
-      # starting_date = doc.css('#detail').css('li a').inner_html
-
-      # regexp_p = /\d+/
-      # price_text = doc.css('#detail').css('li')[2].text
-      # pr = price_text.match(regexp_p)
-      # price = pr[1].to_i unless pr.nil?
+      regexp_d = /^(.*?2020)/
+      info_date = doc.css('#detail').css('li a').text
+      starting_date = info_date.match(regexp_d)
 
       line_up = doc.css('.lineup').text.gsub("\n", "")
       description = doc.css('.left').css('p')[1].text.gsub("\n", "")
-
-      # opening_hours = doc.css('#detail').css('li')[0].text
 
       regexp_a = /.*<br>(.*)<br>.*/
       address_html = doc.search('#detail').search('li.wide').inner_html
@@ -56,12 +52,19 @@ class Scraper
         location: location,
         line_up: line_up,
         description: description
-        # photo: img_urls[0]
-        # starting_date: starting_date
       }
       event_info[:address] = address[1].lstrip unless address.nil?
+      event_info[:starting_time] = starting_date[1] unless starting_date.nil?
+      event_info[:starting_time] = Date.parse(event_info[:starting_time]).strftime('%Y-%m-%d')
+
+      if img_urls[0].nil?
+        event_info[:photo] = "https://source.unsplash.com/featured/?club"
+      else
+        event_info[:photo] = img_urls[0]
+      end
 
       events_list << event_info
+      p event_info
     end
     events_list
   end
