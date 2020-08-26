@@ -25,6 +25,7 @@ gem 'pundit'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'nokogiri'
 gem 'pry', '~> 0.13.1'
+gem 'acts-as-taggable-on', '~> 6.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

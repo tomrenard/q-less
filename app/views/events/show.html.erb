@@ -2,9 +2,9 @@
 
   <div>
     <% if @event.photo.attached? %>
-      <div><%= cl_image_tag @event.photo.key, height: 300, width: 400, crop: :fit %></div>
+    <div><%= cl_image_tag @event.photo.key, height: 300, width: 400, crop: :fit %></div>
     <% end %>
- </div>
+  </div>
 
   <div>
 
@@ -18,14 +18,19 @@
       <h3><%= @event.price %></h3>
       <h3><%= @event.start_time %></h3>
       <h3><%= @event.end_time %></h3>
+      <h3><%= @event.tag_list %></h3>
+      <ul><% @related_events.each do |event| %>
+        <li><%= event.title %>
+        <% end %>
+      </ul>
     </div>
 
     <% if policy(Event).destroy? %>
-        <p><%= link_to "Delete my event", event_path(@event), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-danger'%></p>
+    <p><%= link_to "Delete my event", event_path(@event), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-danger'%></p>
     <% end %>
     <% if policy(Event).edit? %>
-        <p><%= link_to "Update my event", event_path(@event), method: :update, data: { confirm: "Are you sure?"}, class: 'btn btn-warning'%></p>
+    <p><%= link_to "Update my event", event_path(@event), method: :update, data: { confirm: "Are you sure?"}, class: 'btn btn-warning'%></p>
     <% end %>
 
-    </div>
+  </div>
 </main>
