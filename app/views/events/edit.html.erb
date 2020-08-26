@@ -1,0 +1,44 @@
+<%= simple_form_for(@event) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <body>
+      <div class="login-box">
+        <h2>Add Your Event</h2>
+          <form>
+            <div class="user-box">
+              <%= f.input :title %>
+            </div>
+             <div class="user-box">
+              <%= f.input :location %>
+            </div>
+            <div class="user-box">
+               <%= f.input :address, id: "event_address"%>
+            </div>
+            <div class="user-box">
+              <%= f.input :category %>
+            </div>
+              <div class="user-box">
+              <%= f.input :line_up %>
+            </div>
+            <div class="user-box">
+              <%= f.input :description %>
+            </div>
+            <div class="user-box">
+              <%= f.input :price %>
+            </div>
+            <div class="user-box">
+              <%= f.input :start_time%>
+            </div>
+            <div class="user-box">
+              <%= f.input :end_time%>
+            </div>
+            <div class="user-box">
+              <%=  f.input :photo, as: :file  %>
+            </div>
+            <div class="form-actions">
+              <%= f.button :submit%>
+            </div>
+          </form>
+        </div>
+  </body>
+<% end %>
