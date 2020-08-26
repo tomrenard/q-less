@@ -2,7 +2,13 @@
  # before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @events = policy_scope(Event)
+    @events = policy_scope(Event).geocoded
+    @markers = @events.map do |event|
+      {
+        lat: event.latitude,
+        lng: event.longitude
+      }
+    end
   end
 
   def show
@@ -25,6 +31,7 @@
     else
       render :new
     end
+    authorize @event
   end
 
   def update
@@ -33,6 +40,7 @@
     else
       render :new
     end
+    authorize @event
   end
 
   def destroy
@@ -53,7 +61,6 @@
     @event = Event.find(params[:id])
     authorize @event
   end
-
   def event_params
     params.require(:event).permit(:title, :description, :category, :start_time, :end_time, :address, :price, :line_up, :location, :photo)
   end
