@@ -1,2 +1,105 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<div class="card-category">
+  <div class="container">
+    <h1> <h1><strong>Don't wait.<strong> Dance.</h1></h1>
+
+<!-- <form class="form-inline d-flex justify-content-center md-form form-sm">
+  <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search for an event, club, or city"
+    aria-label="Search">
+  <i class="fas fa-search" aria-hidden="true"></i>
+</form> -->
+    <div class="search-form-control">
+      <%= form_tag events_path, method: :get do %>
+      <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+        placeholder: "Type a city, event, or club"
+        %>
+        <button type="button" class="btn"><i class="fas fa-search"></i></button>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <br><br>
+  <h2>TONIGHT</h2>
+  <div class="card-product">
+  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+  <div class="card-product-infos">
+    <h2>Product name</h2>
+    <p>Product description with <strong>relevant info</strong> only.</p>
+  </div>
+</div>
+
+<div class="card-product">
+  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+  <div class="card-product-infos">
+    <h2>Product name</h2>
+    <p>Product description with <strong>relevant info</strong> only.</p>
+  </div>
+</div>
+  <!-- app/views/articles/index.html.erb -->
+ <!--  <div class="roots">
+
+    <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1453738773917-9c3eff1db985?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);">
+      <div class="container">
+        <h1> <h1>Discover & Book <strong>Music Studios</strong>!</h1></h1>
+        <p>The largest & most trusted online community to rent music studios.</p>
+        <%= link_to events_path do %>
+          <button class="btn btn-flat">Get Started</button>
+        <% end %>
+      </div>
+    </div>
+  -->
+<!--
+    <div class="container">
+
+      <div class="title">
+      <h2>How it works</h2>
+      </div>
+
+      <div class="card-deck">
+        <div class="card">
+          <img src="https://source.unsplash.com/FJYpEIcoWBk" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Discover Studios</h5>
+            <p class="card-text">Discover studios nearby or in 35+ countries. From the most unique home studios to top-line studios.</p>
+          </div>
+
+        </div>
+        <div class="card">
+          <img src="https://source.unsplash.com/WK279Gj2G1c" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Find a Studio</h5>
+            <p class="card-text">Take your time to find the studio which matches your specific needs.</p>
+          </div>
+
+        </div>
+        <div class="card">
+          <img src="https://source.unsplash.com/fVIpbUFPggo" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Book & Confirm</h5>
+            <p class="card-text">Send a booking request for the time, date. Receive confirmation back directly, usually in minutes.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="footer">
+      <div class="footer-links">
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+      <div class="footer-copyright">
+        <a href="">About us</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+-->
