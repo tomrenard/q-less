@@ -32,6 +32,10 @@
       <% end %>
     </div>
 
+     <%= link_to new_event_queue_estimation_path(@event, @queue_estimation) do %>
+      <button class="book-btn btn btn-flat">Give a estimation of the queue</button>
+      <% end %>
+
     <% if policy(Event).destroy? %>
         <p><%= link_to "Delete my event", event_path(@event), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-danger'%></p>
     <% end %>
