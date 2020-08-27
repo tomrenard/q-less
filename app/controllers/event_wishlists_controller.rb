@@ -12,7 +12,8 @@ class EventWishlistsController < ApplicationController
   end
 
   def destroy
-
+    @event = Event.find(event_wishlist_params[:event_id])
+    @event.destroy
   end
 
   private
