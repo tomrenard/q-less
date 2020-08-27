@@ -15,6 +15,7 @@ class EventsController < ApplicationController
   def show
     set_event
     @related_events = @event.find_related_tags
+    @event_wishlist = EventWishlist.new
     @chatroom = @event.chatroom
     @message = Message.new
   end

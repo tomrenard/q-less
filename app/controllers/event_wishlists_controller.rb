@@ -1,13 +1,24 @@
 class EventWishlistsController < ApplicationController
   def create
-    @EventWishlists = QueueEstimation.create(queue_params)
-    @queue_estimation.user = current_user
-    @queue_estimation.event = @event
-    # authorize @queue_estimation
-    if @queue_estimation.save
-      redirect_to queue_estimation_path(@queue_estimation)
+    @event = Event.find(event_wishlist_params[:event_id])
+    @event_wishlist = EventWishlist.create!({ user:current_user, event:@event })
+    if @event_wishlist.save
+      events_path(@event)
     else
-      render :new
+      events_path(@event)
+      raise
     end
+      authorize @event_wishlist
+  end
+
+  def destroy
+
+  end
+
+  private
+
+  def event_wishlist_params
+    params.permit(:event_id)
   end
 end
+
