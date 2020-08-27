@@ -3,6 +3,7 @@ class EventsController < ApplicationController
 
   def index
     @events = policy_scope(Event).geocoded
+    @event_wishlist = EventWishlist.new
     @markers = @events.map do |event|
       {
         lat: event.latitude,
@@ -18,6 +19,7 @@ class EventsController < ApplicationController
     @event_wishlist = EventWishlist.new
     @chatroom = @event.chatroom
     @message = Message.new
+    console
   end
 
   def edit

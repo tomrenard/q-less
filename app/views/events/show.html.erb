@@ -26,11 +26,19 @@
       </ul>
     </div>
 
+    <% if current_user.event_wishlists.find {|event_w| event_w.event_id == @event.id} %>
+      <p><%= link_to dashboard_path(@event), method: :delete %></p>
+      <i class="fas fa-heart"></i>
+    <% else %>
     <div>
-      <%= simple_form_for [@event, @event_wishlist] do |f| %>
-      <%= f.submit "<3"%>
-      <% end %>
+      <%= simple_form_for [event, @event_wishlist] do |f| %>
+      <%= f.submit "far fa-heart"%>
+      <i class="far fa-heart"></i>
     </div>
+
+
+
+    <% end %>
 
      <%= link_to new_event_queue_estimation_path(@event, @queue_estimation) do %>
       <button class="book-btn btn btn-flat">Give a estimation of the queue</button>
