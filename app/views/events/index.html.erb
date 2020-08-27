@@ -1,38 +1,39 @@
-<h1 class="text-center">Find an event <strong> nearby </strong>!</h1>
+<h1 class="text-center">Events nearby</h1>
 
 <div class="container">
   <div class="row">
     <div class="col-sm">
-      <% @events.each do |event| %>
-        <div class="card-product">
-            <% if event.photo.attached? %>
-              <div class="event-left-image"><%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fit %></div>
-            <% end %>
-           <div class="card-product-infos">
-              <%= link_to event_path(event) do %>
-                <h2><%=event.title %></h2>
-                <h2><%=event.category %></h2>
-                <h2><%=event.start_time%></h2>
-                <h2><%=event.end_time%></h2>
-                <h2><%=event.location%></h2>
-                <p><% event.tag_list.each do |tag| %>
-                <%= link_to tag, tagged_path(tag: tag) %>
-                <% end %></p>
-              <% end %>
-           </div>
+      <div
+      id="map"
+      style="width: 100%; height: 300px;"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+    <% @events.each do |event| %>
+    <div class="card-product">
+      <% if event.photo.attached? %>
+      <div class="event-left-image"><%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fit %></div>
+      <% end %>
+      <div class="card-product-infos">
+        <%= link_to event_path(event) do %>
+        <h2><%=event.title %></h2>
+        <h2><%=event.category %></h2>
+        <h2><%=event.start_time%></h2>
+        <h2><%=event.end_time%></h2>
+        <h2><%=event.location%></h2>
+        <p><% event.tag_list.each do |tag| %>
+          <%= link_to tag, tagged_path(tag: tag) %>
+          <% end %></p>
+          <% end %>
         </div>
+      </div>
       <% end %>
     </div>
   </div>
-<div
-  id="map"
-  style="width: 100%; height: 600px;"
-  data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-</div>
-<div>
-<% if policy(Event).create? %>
-  <%= link_to "New Event", new_event_path %>
-<% end %>
-</div>
+
+  <div>
+    <% if policy(Event).create? %>
+    <%= link_to "New Event", new_event_path %>
+    <% end %>
+  </div>
 </div>
