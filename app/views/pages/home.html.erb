@@ -22,19 +22,14 @@
   </div>
   <br><br>
   <h2>TONIGHT</h2>
-  <div class="card-product">
-  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-  <div class="card-product-infos">
-    <h2>Product name</h2>
-    <p>Product description with <strong>relevant info</strong> only.</p>
+  <% @events.each do |event| %>
+   <div class="card-product">
+    <img src= <%= event.photo_link %> />
+    <div class="card-product-infos">
+    <h2><%= link_to event.title, event_path(event)%></h2>
+    <p> <%= event.description %></p>
   </div>
 </div>
+  <% end %>
 
-<div class="card-product">
-  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-  <div class="card-product-infos">
-    <h2>Product name</h2>
-    <p>Product description with <strong>relevant info</strong> only.</p>
-  </div>
-</div>
 
