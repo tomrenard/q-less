@@ -1,2 +1,40 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<div class="card-category">
+  <div class="container">
+    <h1> <h1><strong>Don't wait.<strong> Dance.</h1></h1>
+
+<!-- <form class="form-inline d-flex justify-content-center md-form form-sm">
+  <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search for an event, club, or city"
+    aria-label="Search">
+  <i class="fas fa-search" aria-hidden="true"></i>
+</form> -->
+    <div class="search-form-control">
+      <%= form_tag events_path, method: :get do %>
+      <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+        placeholder: "Type a city, event, or club"
+        %>
+        <button type="button" class="btn"><i class="fas fa-search"></i></button>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <br><br>
+  <h2>TONIGHT</h2>
+  <div class="card-product">
+  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+  <div class="card-product-infos">
+    <h2>Product name</h2>
+    <p>Product description with <strong>relevant info</strong> only.</p>
+  </div>
+</div>
+
+<div class="card-product">
+  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+  <div class="card-product-infos">
+    <h2>Product name</h2>
+    <p>Product description with <strong>relevant info</strong> only.</p>
+  </div>
+</div>
+
