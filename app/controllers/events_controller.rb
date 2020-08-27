@@ -1,5 +1,5 @@
- class EventsController < ApplicationController
- # before_action :authenticate_user!, only: [:new, :create]
+class EventsController < ApplicationController
+  # before_action :authenticate_user!, only: [:new, :create]
 
   def index
     @events = policy_scope(Event).geocoded
@@ -16,6 +16,8 @@
     set_event
     @related_events = @event.find_related_tags
     @event_wishlist = EventWishlist.new
+    @chatroom = @event.chatroom
+    @message = Message.new
   end
 
   def edit
@@ -31,7 +33,8 @@
     @event = Event.new(event_params)
     @event.user = current_user
     if @event.save
-      redirect_to events_path
+      @event.create_chatroom!(name: "Livechat")
+      redirect_to event_path(@event)
     else
       render :new
     end
@@ -49,13 +52,13 @@
 
   def destroy
     set_event
-      if @event.destroy
-        flash[:notice] = "\"#{@event.title}\" was successfully deleted."
-        redirect_to events_path
-      else
-        flash.now[:alert] = "There was an error deleting the event."
-        render :show
-      end
+    if @event.destroy
+      flash[:notice] = "\"#{@event.title}\" was successfully deleted."
+      redirect_to events_path
+    else
+      flash.now[:alert] = "There was an error deleting the event."
+      render :show
+    end
   end
 
   def tagged
@@ -72,6 +75,7 @@
     @event = Event.find(params[:id])
     authorize @event
   end
+
   def event_params
     params.require(:event).permit(:title, :description, :category, :start_time, :end_time, :address, :price, :line_up, :location, :photo, :tag_list)
   end
