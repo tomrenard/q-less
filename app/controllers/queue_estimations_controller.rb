@@ -16,7 +16,7 @@ class QueueEstimationsController < ApplicationController
 
   def new
     @queue_estimation = QueueEstimation.new
-    # authorize @queue_estimation
+    authorize @queue_estimation
   end
 
   def create
