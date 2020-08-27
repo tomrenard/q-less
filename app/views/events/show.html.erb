@@ -2,7 +2,7 @@
 
   <div>
     <% if @event.photo.attached? %>
-    <div><%= cl_image_tag @event.photo.key, height: 300, width: 400, crop: :fit %></div>
+    <div><%= cl_image_tag @event.photo.key, height: 300, width: 400, crop: :fit %></div> ||   <img src="<%= @event.photo_link %>" alt="">
     <% end %>
   </div>
 
@@ -23,6 +23,12 @@
         <li><%= event.title %>
         <% end %>
       </ul>
+    </div>
+
+    <div>
+      <%= simple_form_for [@event, @event_wishlist] do |f| %>
+      <%= f.submit "<3"%>
+      <% end %>
     </div>
 
     <% if policy(Event).destroy? %>

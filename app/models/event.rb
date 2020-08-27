@@ -7,6 +7,7 @@ class Event < ApplicationRecord
   acts_as_taggable_on :genre, :size, :place
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+  has_many :event_wishlists
 
   def self.create_from_scraping(events)
     events.each do |event_info|

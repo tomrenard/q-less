@@ -15,6 +15,7 @@
   def show
     set_event
     @related_events = @event.find_related_tags
+    @event_wishlist = EventWishlist.new
   end
 
   def edit
@@ -56,7 +57,7 @@
         render :show
       end
   end
-  
+
   def tagged
     if params[:tag].present?
       @events = Event.tagged_with(params[:tag])
@@ -64,7 +65,7 @@
       @events = Event.all
     end
   end
-   
+
   private
 
   def set_event
