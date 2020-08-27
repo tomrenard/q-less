@@ -27,7 +27,7 @@
     <img src= <%= event.photo_link %> />
     <div class="card-product-infos">
     <h2><%= link_to event.title, event_path(event)%></h2>
-    <p> <%= event.description %></p>
+    <p> <%= truncate event.description, length: 75, separator: /\w+/ %></p>
   </div>
 </div>
   <% end %>
