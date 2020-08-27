@@ -11,7 +11,7 @@ class QueueEstimationsController < ApplicationController
     @queue_estimation = QueueEstimation.find(params[:id])
     # @queue_estimation = QueueEstimation.last
     # is this how we want it??
-    # authorize @queue_estimation
+    authorize @queue_estimation
   end
 
   def new
@@ -23,7 +23,7 @@ class QueueEstimationsController < ApplicationController
     @queue_estimation = QueueEstimation.create(queue_params)
     @queue_estimation.user = current_user
     @queue_estimation.event = @event
-    # authorize @queue_estimation
+    authorize @queue_estimation
     if @queue_estimation.save
       redirect_to queue_estimation_path(@queue_estimation)
     else
