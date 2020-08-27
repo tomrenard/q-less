@@ -7,7 +7,7 @@ require 'date'
 class Scraper
   def scrape_event_urls
     date = Date.today
-    berlin_url = "https://www.residentadvisor.net/events/de/berlin/month/#{date}"
+    berlin_url = "https://www.residentadvisor.net/events/de/berlin/week/#{date}"
     html = open(berlin_url)
     doc = Nokogiri::HTML(html)
     events = doc.css('div.bbox').css('.event-title>a')
@@ -48,27 +48,29 @@ class Scraper
       end
 
       event_info = {
-        title: title,
         location: location,
         line_up: line_up,
         description: description
       }
-      event_info[:address] = address[1].lstrip unless address.nil?
-      event_info[:starting_time] = starting_date[1] unless starting_date.nil?
-      event_info[:starting_time] = Date.parse(event_info[:starting_time]).strftime('%Y-%m-%d')
+      event_info[:address] = address[1].lstrip unless address.nil? || address[0].include?("Secret") || address[0].exclude?("Berlin")
+      event_info[:start_time] = starting_date[1] unless starting_date.nil?
+      event_info[:start_time] = Date.parse(event_info[:start_time]).strftime('%Y-%m-%d')
+      event_info[:user] = User.first
 
       if img_urls[0].nil?
-        event_info[:photo] = "https://source.unsplash.com/featured/?club"
+        event_info[:photo_link] = "https://source.unsplash.com/featured/?club"
       else
-        event_info[:photo] = img_urls[0]
+        event_info[:photo_link] = img_urls[0]
+      end
+
+      if event_info[:location] == "Sage Beach Berlin"
+        event_info[:title] = location
+      else
+        event_info[:title] = title
       end
 
       events_list << event_info
-      p event_info
     end
     events_list
   end
 end
-
-scrape = Scraper.new
-events = scrape.scrape_event_urls

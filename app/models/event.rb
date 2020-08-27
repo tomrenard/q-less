@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :queue_estimations, dependent: :destroy
   has_one :chatroom, dependent: :destroy
   has_one_attached :photo
@@ -10,7 +10,7 @@ class Event < ApplicationRecord
 
   def self.create_from_scraping(events)
     events.each do |event_info|
-      Event.create(event_info)
+      Event.create!(event_info)
     end
   end
 end
