@@ -73,6 +73,13 @@ ActiveRecord::Schema.define(version: 2020_08_27_093413) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "follows", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.string "content"
     t.bigint "chatroom_id", null: false
