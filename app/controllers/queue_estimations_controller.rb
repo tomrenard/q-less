@@ -25,7 +25,7 @@ class QueueEstimationsController < ApplicationController
     @queue_estimation.event = @event
     authorize @queue_estimation
     if @queue_estimation.save
-      redirect_to queue_estimation_path(@queue_estimation)
+      redirect_to event_path(@event)
     else
       render :new
     end

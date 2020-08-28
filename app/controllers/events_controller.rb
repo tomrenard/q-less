@@ -19,6 +19,7 @@ class EventsController < ApplicationController
     @event_wishlist = EventWishlist.new
     @chatroom = @event.chatroom
     @message = Message.new
+    @last_queues = @event.queue_estimations.last(3)
     console
   end
 
