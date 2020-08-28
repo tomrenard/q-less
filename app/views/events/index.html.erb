@@ -25,12 +25,11 @@
       <% if event.photo.attached? %>
       <div class="event-left-image"><%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fit %></div>
       <% end %>
+      <img src= <%= event.photo_link %> />
       <div class="card-product-infos">
         <%= link_to event_path(event) do %>
         <h2><strong><%=event.title %></strong></h2>
         <h2><%=event.category %></h2>
-        <h2><%=event.start_time%></h2>
-        <h2><%=event.end_time%></h2>
         <h2><%=event.location%></h2>
         <p><% event.tag_list.each do |tag| %>
           <%= link_to tag, tagged_path(tag: tag) %>
