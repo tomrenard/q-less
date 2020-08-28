@@ -36,7 +36,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     if @event.save
-      @event.create_chatroom!(name: "Livechat")
+      @event.create_chatroom!(name: "Clubchat")
       redirect_to event_path(@event)
     else
       render :new

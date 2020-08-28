@@ -20,7 +20,7 @@
                 <%= @event.location %>
             </h3>
             <p>
-                <%= @event.address %>
+                The party is located at <%= @event.address %>.
             </p>
             <p>Line up:
                 <%= @event.line_up %>
@@ -32,7 +32,7 @@
                 <%= @event.price %>
             </h3>
             <h3>
-                <%= @event.start_time %>
+                Starting date: <%= @event.start_time.strftime("%d/%m/%Y") %>
             </h3>
             <h3>
                 <%= @event.end_time %>
@@ -65,39 +65,43 @@
             <%# end %>
         </div>
         <% end %>
-        <%= link_to new_event_queue_estimation_path(@event,
+
+     <!--    <%# if policy(Event).destroy? %>
+        <p>
+            <#%= link_to "Delete my event", event_path(@event), method: :delete, data:
+      { confirm: "Are you sure?"}, class: 'btn btn-danger'%>
+        </p>
+        <%# end %>
+        <#% if policy(Event).edit? %>
+        <p>
+            <%#= link_to "Update my event", edit_event_path(@event), class: 'btn
+      btn-info'%>
+        </p>
+        <%# end %>
+    </div> -->
+</main>
+
+<div class=queue_est>
+ <% @last_queues.each do |last_queue| %>
+    <p>A clubber indicated a waiting time of <%= last_queue.waiting_time %>min few minutes ago.</p>
+  <% end %>
+</div>
+<div>
+  <h2>Already in front of the club?</h2>
+ <%= link_to new_event_queue_estimation_path(@event,
     @queue_estimation) do %>
         <button class="book-btn btn btn-flat">
             Give a estimation of the queue
         </button>
         <% end %>
-        <% if policy(Event).destroy? %>
-        <p>
-            <%= link_to "Delete my event", event_path(@event), method: :delete, data:
-      { confirm: "Are you sure?"}, class: 'btn btn-danger'%>
-        </p>
-        <% end %>
-        <% if policy(Event).edit? %>
-        <p>
-            <%= link_to "Update my event", edit_event_path(@event), class: 'btn
-      btn-info'%>
-        </p>
-        <% end %>
-    </div>
-</main>
-
-<div class=queue_est>
- <% @last_queues.each do |last_queue| %>
-    <p><%= last_queue.waiting_time %></p>
-  <% end %>
 </div>
 <div>
-<h1>#
-    <%= @chatroom.name %>
+<h1>
+    <%= @chatroom.name %> more than Live
 </h1>
 <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
     <%=
-  f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
+  f.input :content, label: false, placeholder: "Find some friends, ask for the timetable" %>
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <% end %>
 <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
