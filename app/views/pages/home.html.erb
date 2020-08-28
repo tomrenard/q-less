@@ -1,7 +1,9 @@
 
 <div class="card-category">
   <div class="container">
-    <h1> <h1><strong>Don't wait.<strong> Dance.</h1></h1>
+    <div class=home-title>
+    <h1><strong>Don't wait.<strong> Dance.</h1>
+    </div>
 
 <!-- <form class="form-inline d-flex justify-content-center md-form form-sm">
   <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search for an event, club, or city"
@@ -21,15 +23,14 @@
     </div>
   </div>
   <br><br>
-  <h2>TONIGHT</h2>
-  <% @events.each do |event| %>
+  <div class=tonight>
+  <h2>HOW IT WORKS</h2>
+  </div>
    <div class="card-product">
-    <img src= <%= event.photo_link %> />
+    <img src="https://source.unsplash.com/1xCqdWUfEss" >
     <div class="card-product-infos">
-    <h2><%= link_to event.title, event_path(event)%></h2>
-    <p> <%= truncate event.description, length: 75, separator: /\w+/ %></p>
+    <h2>TITLE</h2>
+    <p> TEXT</p>
   </div>
 </div>
-  <% end %>
-
 
