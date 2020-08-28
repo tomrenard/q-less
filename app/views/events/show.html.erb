@@ -92,15 +92,11 @@
 
     <div class="queue_est text-center">
       <h2>Queue estimation</h2>
-      <% if @last_queues.nil? %>
-        <p>No queue estimation for now.</p>
-      <% else %>
         <% @last_queues.each do |last_queue| %>
         <div class=qest>
           <p>A clubber indicated a waiting time of <strong><%= last_queue.waiting_time %>min</strong> few minutes ago.</p>
          </div>
         <% end %>
-      <% end %>
    </div>
    <div class="text-center">
     <h2>Already in front of the club?</h2>
