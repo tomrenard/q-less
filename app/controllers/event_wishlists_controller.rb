@@ -1,25 +1,18 @@
 class EventWishlistsController < ApplicationController
-  def create
-    @event = Event.find(event_wishlist_params[:event_id])
-    @event_wishlist = EventWishlist.create!({ user:current_user, event:@event })
-    if @event_wishlist.save
-      events_path(@event)
+
+  def update
+    @event_wishlist = EventWishlist.where(event:Event.find(params[:event]), user: current_user)
+    if @event_wishlist == []
+      EventWishlist.create(event:Event.find(params[:event]), user: current_user)
+      @event_wishlist_exit = true
     else
-      events_path(@event)
-      raise
+      @event_wishlist.destroy_all
+      @event_wishlist_exit = false
     end
-      authorize @event_wishlist
-  end
-
-  def destroy
-    @event = Event.find(event_wishlist_params[:event_id])
-    @event.destroy
-  end
-
-  private
-
-  def event_wishlist_params
-    params.permit(:event_id)
+    respond_to do |format|
+    format.html{}
+    format.js{}
+    end
+    authorize @event_wishlist
   end
 end
-

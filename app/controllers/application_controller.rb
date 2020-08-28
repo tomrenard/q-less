@@ -10,5 +10,12 @@ class ApplicationController < ActionController::Base
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
+
+  def favorite_text
+    return @favorite_exists ? "UnFavorite" : "Favorite"
+  end
+
+  helper_method :favorite_text
 end
+
 # sounds good
