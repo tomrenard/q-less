@@ -11,16 +11,6 @@
     </div>
     <% @events.each do |event| %>
 
-      <% if current_user.event_wishlists.find {|event_w| event_w.event_id == event.id} %>
-          <p><%= link_to dashboard_path(@event), method: :delete %></p>
-          <i class="fas fa-heart"></i>
-      <% else %>
-        <div>
-          <%= simple_form_for [event, @event_wishlist] do |f| %>
-          <%= f.submit "<3"%>
-        <% end %>
-        </div>
-      <% end %>
       <div class="card-product">
       <% if event.photo.attached? %>
       <div class="event-left-image"><%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fit %></div>
@@ -36,6 +26,16 @@
           <%= link_to tag, tagged_path(tag: tag) %>
           <% end %></p>
           <% end %>
+        <!--  <%# if current_user.event_wishlists.find {|event_w| event_w.event_id == event.id} %>
+          <p><%#= link_to dashboard_path(@event), method: :delete %></p>
+          <i class="fas fa-heart"></i>
+      <%# else %>
+        <div>
+          <%#= simple_form_for [event, @event_wishlist] do |f| %>
+          <%#= f.submit "<3"%>
+        <%# end %>
+        </div> -->
+      <%# end %>
         </div>
       </div>
       <% end %>
