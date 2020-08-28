@@ -22,7 +22,7 @@
   display: flex;
   margin: 1rem;
   border-radius: 5px;
-  opacity: 0.6;
+  opacity: 1;
 }
 
 .card-product img {
@@ -47,6 +47,18 @@
 
 .card-product .card-product-infos {
   padding: 16px;
+  background-color: #2E2E2E;
+
+}
+
+.card-product .card-product-infos h2 {
+  text-decoration: none;
+  color: #FC5759;
+  color: white;
+}
+
+.card-product .card-product-infos p {
+  color: white;
 }
 
 .card-trip {
