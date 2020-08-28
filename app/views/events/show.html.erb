@@ -1,70 +1,79 @@
 <main>
-    <div class="img-container">
-        <% if @event.photo.attached? %>
-        <div class="show-img">
-            <%= cl_image_tag @event.photo.key, height: 300, width: 400, crop: :fit %>
-        </div>
-        <% else %>
-        <div class="show-img"><img src="<%= @event.photo_link %>" alt="" /></div>
-        <% end %>
+  <div class="img-container">
+    <% if @event.photo.attached? %>
+    <div class="show-img">
+      <%= cl_image_tag @event.photo.key, height: 300, width: 400, crop: :fit %>
     </div>
-    <div>
-        <div>
-            <h1>
-                <%= @event.title %>
-            </h1>
-            <h3>
-                <%= @event.category %>
-            </h3>
-            <h3>
-                <%= @event.location %>
-            </h3>
-            <p>
-                The party is located at <%= @event.address %>.
-            </p>
-            <p>Line up:
-                <%= @event.line_up %>
-            </p>
-            <p>
-                <%= @event.description %>
-            </p>
-            <h3>
-                <%= @event.price %>
-            </h3>
-            <h3>
-                Starting date: <%= @event.start_time.strftime("%d/%m/%Y") %>
-            </h3>
-            <h3>
-                <%= @event.end_time %>
-            </h3>
-            <h3>
-                <%= @event.tag_list %>
-            </h3>
-            <h5>The average waiting time is 17min.</h5>
-            <ul>
-                <% @related_events.each do |event| %>
-                <li>
-                    <%= event.title %>
-                    <% end %>
-                </li>
-            </ul>
-        </div>
-        <% if current_user.event_wishlists.find {|event_w| event_w.event_id ==
-    @event.id} %>
-        <p>
-            <%= link_to dashboard_path(@event), method: :delete %>
-        </p>
-        <i class="fas fa-heart"></i>
-        <% else %>
-        <div>
-            <%#= simple_form_for [event, @event_wishlist] do |f| %>
+    <% else %>
+    <div class="show-img"><img src="<%= @event.photo_link %>" alt="" /></div>
+    <% end %>
+  </div>
+  <div>
+    <div class="title">
+      <h1>
+        <%= @event.title %>
+      </h1>
+      <h3>
+        <%= @event.category %>
+      </h3>
+      <h3>
+        <%= @event.location %>
+      </h3>
+    </div>
+    <div class="address">
+      <p>
+        <strong><%= @event.address %></strong>
+      </p>
+    </div>
+    <div class="date">
+     <p><strong>Starting on: <%= @event.start_time.strftime("%d/%m/%Y") %></strong></p>
+   </div>
+
+   <div class="line_up">
+    <p> <strong>Line up</strong><br>
+      <%= @event.line_up %>
+    </p>
+  </div>
+  <div class="description">
+    <p>
+      <%= @event.description %>
+    </p>
+    <h3>
+      <%= @event.price %>
+    </h3>
+
+    <h3>
+      <%= @event.end_time %>
+    </h3>
+  </div>
+  <h3>
+    <%= @event.tag_list %>
+  </h3>
+  <!-- <h5>The average waiting time is 17min.</h5> -->
+  <ul>
+    <% @related_events.each do |event| %>
+    <li>
+      <%= event.title %>
+      <% end %>
+    </li>
+  </ul>
+</div>
+<% if current_user.event_wishlists.find {|event_w| event_w.event_id ==
+  @event.id} %>
+  <p>
+    <%= link_to dashboard_path(@event), method: :delete %>
+  </p>
+  <i class="fas fa-heart"></i>
+  <% else %>
+  <div>
+    <%#= simple_form_for [event, @event_wishlist] do |f| %>
             <%#= f.submit "far
-      fa-heart"%>
+            fa-heart"%>
             <!--       <i class="far fa-heart"></i>
- -->
+            -->
             <%# end %>
-        </div>
-        <% end %>
+          </div>
+          <% end %>
 
      <!--    <%# if policy(Event).destroy? %>
         <p>
@@ -78,46 +87,50 @@
       btn-info'%>
         </p>
         <%# end %>
-    </div> -->
-</main>
+      </div> -->
+    </main>
 
-<div class=queue_est>
- <% @last_queues.each do |last_queue| %>
-    <p>A clubber indicated a waiting time of <%= last_queue.waiting_time %>min few minutes ago.</p>
-  <% end %>
-</div>
-<div>
-  <h2>Already in front of the club?</h2>
- <%= link_to new_event_queue_estimation_path(@event,
+    <div class=queue_est>
+     <% @last_queues.each do |last_queue| %>
+     <p>A clubber indicated a waiting time of <%= last_queue.waiting_time %>min few minutes ago.</p>
+     <% end %>
+   </div>
+   <div class="text-center">
+    <h2>Already in front of the club?</h2>
+    <%= link_to new_event_queue_estimation_path(@event,
     @queue_estimation) do %>
-        <button class="book-btn btn btn-flat">
-            Give a estimation of the queue
-        </button>
-        <% end %>
-</div>
-<div>
-<h1>
-    <%= @chatroom.name %> more than Live
-</h1>
-<%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
-    <%=
-  f.input :content, label: false, placeholder: "Find some friends, ask for the timetable" %>
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <% end %>
-<div id="messages" data-chatroom-id="<%= @chatroom.id %>">
-    <% @chatroom.messages.each do |message| %>
-    <div class="message-container" id="message-<%= message.id %>">
-        <i class="author">
-            <span>
-                <%= message.user.nickname %></span>
-            <small>
-                <%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-        </i>
-        <p>
-            <%= message.content %>
-        </p>
-    </div>
-<% end %>
+    <button type="button" class="btn btn-secondary ">Give a estimation of the queue
+    </button>
 
-</div>
-</div>
+        <!-- <button class="book-btn btn btn-flat">
+            Give a estimation of the queue
+          </button> -->
+          <% end %>
+        </div>
+        <br>
+        <div>
+          <h1>
+            <%= @chatroom.name %>
+          </h1>
+          <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
+          <%=
+          f.input :content, label: false, placeholder: "Find some friends, ask for the timetable" %>
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <% end %>
+          <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+            <% @chatroom.messages.each do |message| %>
+            <div class="message-container" id="message-<%= message.id %>">
+              <i class="author">
+                <span>
+                  <%= message.user.nickname %></span>
+                  <small>
+                    <%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+                  </i>
+                  <p>
+                    <%= message.content %>
+                  </p>
+                </div>
+                <% end %>
+
+              </div>
+            </div>
