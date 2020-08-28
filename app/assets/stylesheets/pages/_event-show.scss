@@ -2,3 +2,35 @@
   max-width: 50%;
   height: auto;
 }
+
+.title h1 {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.title h3 {
+  font-size: 26px;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+}
+
+.address p {
+  text-align: center;
+}
+
+.date p {
+  text-align: center;
+}
+
+.line_up p {
+  text-align: center;
+}
+
+.description p {
+  font-size: 14px;
+  text-align: justify;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
