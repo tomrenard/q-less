@@ -14,6 +14,22 @@
         <%= @event.title %>
       </h1>
       <h3>
+        <%= @user = current_user.nickname %> <%#=to double check%>
+      </h3>
+
+      <div>
+        <% if user_signed_in? %> <%# && !current_user?%>
+          <%# if current_user.following(@user) %>
+            <button class="btn-default">UnFollow</button>
+          <%# else  %>
+          <%#= <button class="btn-default">Follow</button> %>
+          <%# end %>
+        <% end %>
+      </div>
+
+
+
+      <h3>
         <%= @event.category %>
       </h3>
       <h3>
@@ -61,34 +77,23 @@
 </div>
 <% if current_user.event_wishlists.find {|event_w| event_w.event_id ==
   @event.id} %>
-  <p>
-    <%= link_to dashboard_path(@event), method: :delete %>
-  </p>
-  <i class="fas fa-heart"></i>
   <% else %>
-  <div>
-    <%#= simple_form_for [event, @event_wishlist] do |f| %>
-            <%#= f.submit "far
-            fa-heart"%>
-            <!--       <i class="far fa-heart"></i>
-            -->
-            <%# end %>
-          </div>
-          <% end %>
 
-     <!--    <%# if policy(Event).destroy? %>
+    <% end %>
+    <div>
+     <% if policy(Event).destroy? %>
         <p>
-            <#%= link_to "Delete my event", event_path(@event), method: :delete, data:
+            <%= link_to "Delete my event", event_path(@event), method: :delete, data:
       { confirm: "Are you sure?"}, class: 'btn btn-danger'%>
         </p>
-        <%# end %>
-        <#% if policy(Event).edit? %>
+        <% end %>
+        <% if policy(Event).edit? %>
         <p>
-            <%#= link_to "Update my event", edit_event_path(@event), class: 'btn
+            <%= link_to "Update my event", edit_event_path(@event), class: 'btn
       btn-info'%>
         </p>
-        <%# end %>
-      </div> -->
+        <% end %>
+      </div>
     </main>
 
     <div class="queue_est text-center">
