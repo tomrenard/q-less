@@ -5,9 +5,23 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   acts_as_tagger
   has_many :events
-  has_many :received_follows, foreign_key: :followed_user_id, class_name: "Follow"
-  has_many :followers, through: :received_follows, source: :follower
-  has_many :given_follows, foreign_key: :follower_id, class_name: "Follow"
-  has_many :followings, through: :given_follows, source: :followed_user
   has_many :event_wishlists
+  has_many :active_follows, class_name: "Follow", foreign_key: :follower_id, dependent: :destroy
+  has_many :passive_follows, class_name: "Follow", foreign_key: :followed_user_id, dependent: :destroy
+  has_many :following, through: :active_follows, source: :followed
+  has_many :followers, through: :passive_follows, source: :follower
+
+
+  def follow(user)
+    active_follows.create(followed_user_id: user.id)
+  end
+
+  def unfollow(user)
+    active_follows.find_by(followed_user_id: user.id).destroy
+  end
+
+  def following?(user)
+    following.include?(user)
+  end
+
 end
