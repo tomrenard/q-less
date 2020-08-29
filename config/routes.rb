@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :events, only: [:index, :show, :update, :new,:edit, :create, :destroy] do
     resources :queue_estimations, only: [:new, :create]
-    resources :event_wishlists, only: [:create, :destroy]
   end
+  patch '/event_wishlist', to: "event_wishlists#update", as: :event_wishlist
 
   resources :queue_estimations, only: [:index, :show, :destroy]
 

@@ -49,6 +49,7 @@
   <h3>
     <%= @event.tag_list %>
   </h3>
+   <%= link_to favorite_text, event_wishlist_path(event: @event), method: :patch, id: "favorite_link", remote: true %>
   <!-- <h5>The average waiting time is 17min.</h5> -->
   <ul>
     <% @related_events.each do |event| %>

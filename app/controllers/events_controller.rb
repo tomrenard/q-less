@@ -3,7 +3,6 @@ class EventsController < ApplicationController
 
   def index
     @events = policy_scope(Event).geocoded
-    @event_wishlist = EventWishlist.new
     @markers = @events.map do |event|
       {
         lat: event.latitude,
@@ -14,13 +13,12 @@ class EventsController < ApplicationController
   end
 
   def show
+    @favorite_exists = EventWishlist.where(event: @event, user: current_user) == [] ? false : true
     set_event
     @related_events = @event.find_related_tags
-    @event_wishlist = EventWishlist.new
     @chatroom = @event.chatroom
     @message = Message.new
     @last_queues = @event.queue_estimations.last(3)
-    # console
   end
 
   def edit

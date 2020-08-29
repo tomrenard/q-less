@@ -5,11 +5,7 @@ class EventWishlistPolicy < ApplicationPolicy
     end
   end
 
-  def create?
-    true
-  end
-
-  def destroy?
+  def update?
     true
   end
 end

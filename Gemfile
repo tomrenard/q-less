@@ -25,7 +25,6 @@ gem 'pundit'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'nokogiri'
 gem 'pry', '~> 0.13.1'
-gem 'acts-as-taggable-on', '~> 6.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -34,7 +33,7 @@ gem 'acts-as-taggable-on', '~> 6.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
-gem 'pundit'
+gem 'jquery-rails'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
