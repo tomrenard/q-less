@@ -16,7 +16,7 @@
 
 .card-product {
   overflow: hidden;
-  height: 120px;
+  height: 140px;
   background: rgba(255,255,255,0.3);
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
@@ -32,7 +32,7 @@
 }
 
 .card-product h2 {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: bold;
   margin: 0;
 }
@@ -57,6 +57,15 @@
   color: #FC5759;
   color: white;
 }
+
+.card-product .card-product-infos h3 {
+  text-decoration: none;
+  color: #FC5759;
+  color: white;
+  font-size: 12px;
+  text-align: center;
+}
+
 
 .card-product .card-product-infos p {
   color: white;

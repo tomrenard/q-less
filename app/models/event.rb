@@ -12,7 +12,7 @@ class Event < ApplicationRecord
   def self.create_from_scraping(events)
     events.each do |event_info|
       event_seed = Event.create!(event_info)
-      Chatroom.create!({ name: "Livechat", event_id: event_seed.id })
+      Chatroom.create!({ name: "Clubchat", event_id: event_seed.id })
     end
   end
 end
