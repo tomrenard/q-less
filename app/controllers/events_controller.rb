@@ -22,6 +22,7 @@ class EventsController < ApplicationController
   def show
     @favorite_exists = EventWishlist.where(event: @event, user: current_user) == [] ? false : true
     set_event
+    @user = @event.user
     @related_events = @event.find_related_tags
     @chatroom = @event.chatroom
     @message = Message.new
