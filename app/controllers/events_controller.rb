@@ -2,6 +2,8 @@ class EventsController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :create]
 
   def index
+    # @events = Event.search(params())
+    @events = Event.order('event_date_time')
     @events = policy_scope(Event).geocoded
     @markers = @events.map do |event|
       {
@@ -69,6 +71,16 @@ class EventsController < ApplicationController
       @events = Event.all
     end
   end
+
+  # def self.search(search)
+  #   if search
+  #     events = Event.all
+  #     events = events.where(start_time: search[:":start_time"][","])
+  #     return events
+  #   else
+  #     Event.all
+  #   end
+  # end
 
   private
 

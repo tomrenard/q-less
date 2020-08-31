@@ -1,4 +1,14 @@
 <h1 class="text-center">Events nearby</h1>
+<!-- <div class="container">
+  <h3>Filter by:</h3>
+  <%= form_tag(events_path, method: "get") do %>
+   <select name= event[:title], class="form-control">
+     <option value="start_time">start_time</option>
+    <option value="Genre">Genre</option>
+
+   </select>
+  <% end %>
+</div> -->
 
 <script>
   if ('geolocation' in navigator) {
@@ -29,6 +39,7 @@
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
+
     <% @events.each do |event| %>
 
       <div class="card-product">
