@@ -27,3 +27,4 @@ class User < ApplicationRecord
     active_follows.find_by(followed_user_id: user.id)
   end
 end
+# test
