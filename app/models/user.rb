@@ -11,7 +11,6 @@ class User < ApplicationRecord
   has_many :following, through: :active_follows, source: :followed
   has_many :followers, through: :passive_follows, source: :follower
 
-
   def follow(user)
     active_follows.create(followed_user_id: user.id)
   end

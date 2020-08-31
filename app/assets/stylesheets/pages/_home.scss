@@ -1,6 +1,6 @@
 // Specific CSS for your home-page
 body {
-  background-color: white;
+  background-color: #121212;
   padding-bottom: 70px;
   padding-top: 70px;
 }
@@ -12,7 +12,7 @@ h1 {
 }
 h2 {
   color: black;
-  font-family: "Orbitron";
+  font-family: "Roboto";
   text-align: center;
   margin-bottom: 2rem;
 }
@@ -21,19 +21,28 @@ h2 {
 }
 
 .home-title h1 {
-  color: #FC5759;
+  color: white;
+  font-size: 45px;
 }
 
-.tonight h2 {
-  color: #FC5759;
+.card-product h2 {
+  font-family: 'Orbitron';
+  font-size: 20px;
+}
+
+.card-product p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
 }
 
 
 .card-category {
-  background-image: url("https://source.unsplash.com/Xz_Kt3Qv90E");
+  background-image: url("https://source.unsplash.com/Tk7pycVBzq8");
 }
 
 .search-form-control {
   color: white;
+  margin: 10px 10px;
+  font-family: 'Roboto', sans-serif;
 }
 

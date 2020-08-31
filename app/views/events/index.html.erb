@@ -15,7 +15,6 @@
     console.log('geolocation unavailable');
   }
 </script>
-<h1>Q-Less</h1>
 <p>
   latitude: <span id="latitude"></span>&deg;<br />
   longitude: <span id="longitude"></span>&deg;<br />
@@ -41,7 +40,6 @@
       </div>
     </div>
 
-
     <% @events.each do |event| %>
 
     <div class="card-product">
@@ -49,25 +47,14 @@
       <div class="event-left-image"><%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fit %></div>
       <% end %>
       <img src= <%= event.photo_link %> />
-      <div class="card-product-infos">
+      <div class="card-product-infos card-index">
         <%= link_to event_path(event) do %>
         <h3><%=event.start_time.strftime("%d/%m/%Y")%></h3>
-        <h2><strong><%=event.title %></strong></h2>
-        <h2><%=event.category %></h2>
-        <h2>at:  <%=event.location%></h2>
-        <p><% event.tag_list.each do |tag| %>
-          <%= link_to tag, tagged_path(tag: tag) %>
-          <% end %></p>
+        <p><strong><%=event.title %></strong> at <%=event.location%></p>
           <% end %>
         </div>
       </div>
       <% end %>
     </div>
-  </div>
-
-  <div>
-    <% if policy(Event).create? %>
-    <%= link_to "New Event", new_event_path %>
-    <% end %>
   </div>
 </div>
