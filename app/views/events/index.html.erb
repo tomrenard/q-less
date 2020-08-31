@@ -35,46 +35,46 @@
     <div class="search-form-control">
       <%= form_tag events_path, method: :get do %>
       <%= text_field_tag :query_word,
-        params[:query_word],
-        class: "form-control",
-          placeholder: "Search for anything"
+      params[:query_word],
+      class: "form-control",
+        placeholder: "Search for anything"
         %>
-      <input type="date" name="event_date">
-         <div class="btn-search">
-      <%= submit_tag "Search", class: "btn btn-sm btn-outline-secondary" %>
-      </div>
-<!--         <button type="button" class="btn"><i class="fas fa-search"></i></button>
- -->      </div>
+        <input type="date" name="event_date">
+        <div class="btn-search">
+          <%= submit_tag "Search", class: "btn btn-sm btn-outline-secondary" %>
+        </div>
+      <!--   <button type="button" class="btn"><i class="fas fa-search"></i></button>
+      </div> -->
       <% end %>
     </div>
 
 
-  <% @events.each do |event| %>
+    <% @events.each do |event| %>
 
-  <div class="card-product">
-    <% if event.photo.attached? %>
-    <div class="event-left-image"><%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fit %></div>
-    <% end %>
-    <img src= <%= event.photo_link %> />
-    <div class="card-product-infos">
-      <%= link_to event_path(event) do %>
-      <h3><%=event.start_time.strftime("%d/%m/%Y")%></h3>
-      <h2><strong><%=event.title %></strong></h2>
-      <h2><%=event.category %></h2>
-      <h2>at:  <%=event.location%></h2>
-      <p><% event.tag_list.each do |tag| %>
-        <%= link_to tag, tagged_path(tag: tag) %>
-        <% end %></p>
-        <% end %>
+    <div class="card-product">
+      <% if event.photo.attached? %>
+      <div class="event-left-image"><%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fit %></div>
+      <% end %>
+      <img src= <%= event.photo_link %> />
+      <div class="card-product-infos">
+        <%= link_to event_path(event) do %>
+        <h3><%=event.start_time.strftime("%d/%m/%Y")%></h3>
+        <h2><strong><%=event.title %></strong></h2>
+        <h2><%=event.category %></h2>
+        <h2>at:  <%=event.location%></h2>
+        <p><% event.tag_list.each do |tag| %>
+          <%= link_to tag, tagged_path(tag: tag) %>
+          <% end %></p>
+          <% end %>
+        </div>
       </div>
+      <% end %>
     </div>
+  </div>
+
+  <div>
+    <% if policy(Event).create? %>
+    <%= link_to "New Event", new_event_path %>
     <% end %>
   </div>
-</div>
-
-<div>
-  <% if policy(Event).create? %>
-  <%= link_to "New Event", new_event_path %>
-  <% end %>
-</div>
 </div>

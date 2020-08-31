@@ -2,7 +2,6 @@ class EventsController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :create]
 
   def index
-
     @events = Event.order('event_date_time')
     @events = policy_scope(Event).geocoded
 
@@ -14,8 +13,6 @@ class EventsController < ApplicationController
     if params[:event_date].present?
       @events = @events.select { |event| event.start_time == params[:event_date] }
     end
-
-
     @markers = @events.map do |event|
       {
         lat: event.latitude,
