@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   patch '/event_wishlist', to: "event_wishlists#update", as: :event_wishlist
 
   resources :queue_estimations, only: [:index, :show, :destroy]
+  resources :follows, only: [:destroy, :create]
 
   resources :chatrooms, only: :show do
     resources :messages, only: :create
