@@ -1,0 +1,19 @@
+<h2 class="h1"> Favorited </h2>
+
+  <% @event_wishlists.each do |event_wishlist|%>
+    <div class="card-product-infos">
+    <%= event_wishlist.event.title %>
+    <%= event_wishlist.event.location %>
+    <%= event_wishlist.event.start_time %>
+    <%= event_wishlist.event.line_up %>
+    </div>
+  <% end  %>
+
+<h2> Followed </h2>
+
+  <% @followings.each do |follow|%>
+    <div class="card-product-infos">
+    <%= follow.email %>
+    <%= follow.nickname %>
+    </div>
+<% end  %>
