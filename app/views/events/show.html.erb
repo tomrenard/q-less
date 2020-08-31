@@ -13,6 +13,11 @@
       <h1>
         <%= @event.title %>
       </h1>
+      <% @very_last_queues.each do |very_last_queue| %>
+        <div class=qest>
+          <h5>Queue is about <strong><%= very_last_queue.waiting_time %>min</strong> <%= very_last_queue.created_at.strftime("at %l:%M%p")%>.</h5>
+         </div>
+        <% end %>
       <h3>
         <%= @user = current_user.nickname %> <%#=to double check%>
       </h3>
@@ -100,7 +105,7 @@
       <h2>Queue estimation</h2>
         <% @last_queues.each do |last_queue| %>
         <div class=qest>
-          <p>A clubber indicated a waiting time of <strong><%= last_queue.waiting_time %>min</strong> few minutes ago.</p>
+          <p>Queue of <strong><%= last_queue.waiting_time %>min</strong> on <%= last_queue.created_at.strftime("%a %b %e at %l:%M%p")%> indicated by <%= last_queue.user.email %>.</p>
          </div>
         <% end %>
    </div>
@@ -117,11 +122,6 @@
           <h1>
             <%= @chatroom.name %>
           </h1>
-          <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
-          <%=
-          f.input :content, label: false, placeholder: "Find some friends, ask for the timetable" %>
-          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-          <% end %>
           <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
             <% @chatroom.messages.each do |message| %>
             <div class="message-container" id="message-<%= message.id %>">
@@ -136,6 +136,10 @@
                   </p>
                 </div>
                 <% end %>
-
               </div>
+                <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
+          <%=
+          f.input :content, label: false, placeholder: "Find some friends, ask for the timetable" %>
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <% end %>
             </div>

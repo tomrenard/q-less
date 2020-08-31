@@ -26,6 +26,7 @@ class EventsController < ApplicationController
     @chatroom = @event.chatroom
     @message = Message.new
     @last_queues = @event.queue_estimations.last(3)
+    @very_last_queues = @event.queue_estimations.last(1)
   end
 
   def edit
