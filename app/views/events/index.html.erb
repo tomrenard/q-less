@@ -1,14 +1,11 @@
 <h1 class="text-center">Events nearby</h1>
-<!-- <div class="container">
+<div class="container">
   <h3>Filter by:</h3>
   <%= form_tag(events_path, method: "get") do %>
-   <select name= event[:title], class="form-control">
-     <option value="start_time">start_time</option>
-    <option value="Genre">Genre</option>
-
-   </select>
+   <input type="date" name="event_date">
+   <input type="submit" value="go">
   <% end %>
-</div> -->
+</div>
 
 <script>
   if ('geolocation' in navigator) {

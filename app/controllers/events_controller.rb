@@ -3,8 +3,13 @@ class EventsController < ApplicationController
 
   def index
     # @events = Event.search(params())
+
     @events = Event.order('event_date_time')
     @events = policy_scope(Event).geocoded
+
+    if params[:event_date].present?
+      @events = @events.select { |event| event.start_time == params[:event_date] }
+    end
     @markers = @events.map do |event|
       {
         lat: event.latitude,
