@@ -7,6 +7,5 @@ class PagesController < ApplicationController
 
   def dashboard
     @event_wishlists = current_user.event_wishlists
-    @followings = current_user.followings
   end
 end
