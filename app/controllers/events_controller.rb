@@ -2,10 +2,13 @@ class EventsController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    # @events = Event.search(params())
-
     @events = Event.order('event_date_time')
     @events = policy_scope(Event).geocoded
+
+    if params[:query_word].present?
+      sql_query = "title ILIKE :query OR description ILIKE :query OR location ILIKE :query OR line_up ILIKE :query"
+      @events = @events.where(sql_query, query: "%#{params[:query_word]}%")
+    end
 
     if params[:event_date].present?
       @events = @events.select { |event| event.start_time == params[:event_date] }
