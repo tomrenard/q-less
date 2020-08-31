@@ -17,7 +17,7 @@
 .card-product {
   overflow: hidden;
   height: 140px;
-  background: rgba(255,255,255,0.3);
+  background: #23262B;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   margin: 1rem;
@@ -47,7 +47,7 @@
 
 .card-product .card-product-infos {
   padding: 16px;
-  background-color: #2E2E2E;
+  background-color: #23262B;
   width: 100%;
 
 }
@@ -100,7 +100,7 @@
   padding: 16px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  // align-items: flex-end;
   position: relative;
 }
 

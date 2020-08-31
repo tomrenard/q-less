@@ -15,7 +15,6 @@
     console.log('geolocation unavailable');
   }
 </script>
-<h1>Q-Less</h1>
 <p>
   latitude: <span id="latitude"></span>&deg;<br />
   longitude: <span id="longitude"></span>&deg;<br />
@@ -31,6 +30,31 @@
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
     <br>
+    <div class="container">
+      <div class="filter-date">
+        <!-- <h3>Filter by:</h3> -->
+        <%= form_tag(events_path, method: "get") do %>
+        <input type="date" name="event_date">
+        <input type="submit" class="btn btn-light" value="go">
+        <% end %>
+      </div>
+    </div>
+
+    <% @events.each do |event| %>
+
+    <div class="card-product">
+      <% if event.photo.attached? %>
+      <div class="event-left-image"><%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fit %></div>
+      <% end %>
+      <img src= <%= event.photo_link %> />
+      <div class="card-product-infos card-index">
+        <%= link_to event_path(event) do %>
+        <h3><%=event.start_time.strftime("%d/%m/%Y")%></h3>
+        <p><strong><%=event.title %></strong> at <%=event.location%></p>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
 
     <div class="search-form-home">
       <%= form_tag events_path, method: :get do %>
@@ -55,6 +79,7 @@
     <% end %>
   </div>
 
+
   <% @events.each do |event| %>
 
   <div class="card-product">
@@ -76,11 +101,3 @@
     </div>
     <% end %>
   </div>
-</div>
-
-<div>
-  <% if policy(Event).create? %>
-  <%= link_to "New Event", new_event_path %>
-  <% end %>
-</div>
-</div>
