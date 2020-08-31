@@ -1,4 +1,15 @@
-<main>
+  <div>
+    <% if user_signed_in? && current_user != @user %>
+
+      <% if current_user.following?(@user) %>
+        <%= button_to  "Unfollow", follow_path(user_id: @user.id), method: :delete, class: 'btn btn-info'%>
+      <% else  %>
+        <%= button_to "Follow", follows_path(user_id: @user.id), class: 'btn btn-primary'%>
+      <% end %>
+
+    <% end %>
+  </div>
+
   <div class="img-container">
     <% if @event.photo.attached? %>
     <div class="show-img">
@@ -19,19 +30,8 @@
          </div>
         <% end %>
       <h3>
-        <%= @user = current_user.nickname %> <%#=to double check%>
+        <%= @user.nickname %>
       </h3>
-
-      <div>
-        <% if user_signed_in? %> <%# && !current_user?%>
-          <%# if current_user.following(@user) %>
-            <button class="btn-default">UnFollow</button>
-          <%# else  %>
-          <%#= <button class="btn-default">Follow</button> %>
-          <%# end %>
-        <% end %>
-      </div>
-
 
 
       <h3>
@@ -99,7 +99,6 @@
         </p>
         <% end %>
       </div>
-    </main>
 
     <div class="queue_est text-center">
       <h2>Queue estimation</h2>
