@@ -1,5 +1,5 @@
+<div>
   <% if user_signed_in? && current_user != @user %>
-
       <% if current_user.following?(@user) %>
         <%= button_to  "Unfollow", follow_path(user_id: @user.id), method: :delete, class: 'btn btn-info'%>
       <% else  %>
@@ -33,9 +33,9 @@
       </h3>
 
 
-      <h3>
+     <!--  <h3>
         <%= @event.category %>
-      </h3>
+      </h3> -->
       <h3>
         <%= @event.location %>
       </h3>
@@ -70,7 +70,6 @@
     <%= @event.tag_list %>
   </h3>
    <%= link_to favorite_text, event_wishlist_path(event: @event), method: :patch, id: "favorite_link", remote: true %>
-  <!-- <h5>The average waiting time is 17min.</h5> -->
   <ul>
     <% @related_events.each do |event| %>
     <li>
