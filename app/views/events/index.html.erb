@@ -1,22 +1,16 @@
 <h1 class="text-center">Events nearby</h1>
-<div class="container">
-  <h3>Filter by:</h3>
-  <%= form_tag(events_path, method: "get") do %>
-   <input type="date" name="event_date">
-   <input type="submit" value="go">
-  <% end %>
-</div>
+
 
 <script>
   if ('geolocation' in navigator) {
     console.log('geolocation available');
-    navigator.geolocation.getCurrentPosition(position => {
+    navigator.geolocation .getCurrentPosition(position => {
       const lat = position.coords.latitude;
       const lon = position.coords.longitude;
       document.getElementById('latitude').textContent = lat;
       document.getElementById('longitude').textContent = lon;
       console.log(position);
-  });
+    });
   } else {
     console.log('geolocation unavailable');
   }
@@ -36,10 +30,20 @@
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
+    <br>
+    <div class="container">
+      <div class="filter-date">
+        <!-- <h3>Filter by:</h3> -->
+        <%= form_tag(events_path, method: "get") do %>
+        <input type="date" name="event_date">
+        <input type="submit" value="find">
+        <% end %>
+      </div>
+    </div>
 
     <% @events.each do |event| %>
 
-      <div class="card-product">
+    <div class="card-product">
       <% if event.photo.attached? %>
       <div class="event-left-image"><%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fit %></div>
       <% end %>
