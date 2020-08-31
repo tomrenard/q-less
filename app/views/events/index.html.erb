@@ -36,10 +36,11 @@
         <!-- <h3>Filter by:</h3> -->
         <%= form_tag(events_path, method: "get") do %>
         <input type="date" name="event_date">
-        <input type="submit" value="find">
+        <input type="submit" class="btn btn-light" value="go">
         <% end %>
       </div>
     </div>
+
 
     <% @events.each do |event| %>
 
