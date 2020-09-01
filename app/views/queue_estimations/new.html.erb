@@ -3,7 +3,7 @@
 <%= simple_form_for([@event, @queue_estimation]) do |f| %>
 <%= f.error_notification %>
 <body class="">
-  <div class="">
+  <div class="login-box">
     <h2>Enter in the waiting time!</h2>
     <form>
       <div class="user-box">
@@ -11,7 +11,7 @@
       </div>
 
     </div>
-    <div class="form-actions">
+    <div class="form-actions" id="queue-button">
       <%= f.button :submit %>
     </div>
 

@@ -16,11 +16,15 @@
   flex-grow: 0;
   background-color: #121212;
   color: white;
+  text-align: right;
+  padding-right: 20px;
   a {
     color: white;
   }
 }
-
+.nav-item {
+  text-align: right;
+}
 
 .fa-cog {
   color: white;
@@ -32,6 +36,8 @@
 
 .dropdown-item {
   color: white;
+  text-align: right;
+  padding-right: 20px;
 }
 
 .navbar-light .navbar-nav .nav-link{

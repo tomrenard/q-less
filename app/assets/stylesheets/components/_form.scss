@@ -55,7 +55,16 @@
 #login-login {
   font-family: 'Orbitron';
 }
-#sign-up-box a {
+.sign-up-box a {
   font-size: 18px;
   font-family: 'Roboto', sans-serif;
 }
+.sign-up-headline {
+  color: white;
+  font-family: 'Orbitron';
+  font-size: 30px;
+}
+#reset-password {
+  margin-left: 30px;
+}
+
