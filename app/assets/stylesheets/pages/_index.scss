@@ -1,9 +1,6 @@
 // Import page-specific CSS files here.
 @import "home";
-
-h1 {
-  color: white;
-}
+@import "global";
 
 .card-index h2 {
   font-size: 15px;

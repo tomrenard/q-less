@@ -5,6 +5,7 @@
   color: black;
   position: fixed;
   top: 0;
+  height: 80px;
 
   ul {
     margin-bottom: 0;
@@ -13,7 +14,8 @@
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
-  background-color: white;
+  background-color: #121212;
+  color: white;
 }
 
 
@@ -23,4 +25,8 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 3em;
+}
+
+.dropdown-item {
+  color: white;
 }
