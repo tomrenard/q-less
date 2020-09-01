@@ -1,20 +1,5 @@
 <h1 class="text-center p-4">Events nearby</h1>
 
-
-<script>
-  if ('geolocation' in navigator) {
-    console.log('geolocation available');
-    navigator.geolocation .getCurrentPosition(position => {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-      document.getElementById('latitude').textContent = lat;
-      document.getElementById('longitude').textContent = lon;
-      console.log(position);
-    });
-  } else {
-    console.log('geolocation unavailable');
-  }
-</script>
 <p>
   latitude: <span id="latitude"></span>&deg;<br />
   longitude: <span id="longitude"></span>&deg;<br />
