@@ -15,8 +15,8 @@
 </div>
 <div class="search-form-control">
   <%= form_tag events_path, method: :get do %>
-  <%= text_field_tag :query,
-  params[:query],
+  <%= text_field_tag :query_word,
+  params[:query_word],
   class: "form-control",
     placeholder: "Type a city, event, or club"
     %>
