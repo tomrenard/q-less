@@ -23,6 +23,44 @@
   border: 2px solid #1EDD88;
 }
 
+.card-q-l {
+  overflow: hidden;
+  height: 120px;
+  background: #23262B;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  margin: 30px 10px;
+  border: 2px solid #FD1015;
+}
+
+.card-q-ll {
+  overflow: hidden;
+  height: 120px;
+  background: #23262B;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  margin: 30px 10px;
+  border: 2px solid #FFC65A;
+}
+
+.card-q-ll h2 {
+  font-size: 25px;
+  color: white;
+  font-family: 'Orbitron';
+  font-weight: bold;
+  margin: 5px 5px;
+}
+
+.card-q-l h2 {
+  font-size: 25px;
+  color: white;
+  font-family: 'Orbitron';
+  font-weight: bold;
+  margin: 5px 5px;
+}
+
 .card-q h2 {
   font-size: 25px;
   color: white;
@@ -37,6 +75,14 @@
 
 
 .card-q .card-q-infos {
+  padding: 5px;
+}
+
+.card-q-l .card-q-infos {
+  padding: 5px;
+}
+
+.card-q-ll .card-q-infos {
   padding: 5px;
 }
 
