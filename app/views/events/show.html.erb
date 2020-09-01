@@ -1,13 +1,3 @@
-<div>
-  <% if user_signed_in? && current_user != @user %>
-    <% if current_user.following?(@user) %>
-    <%= button_to  "Unfollow", follow_path(user_id: @user.id), method: :delete, class: 'btn btn-info'%>
-    <% else  %>
-    <%= button_to "Follow", follows_path(user_id: @user.id), class: 'btn btn-primary'%>
-    <% end %>
-  <% end %>
-</div>
-
 <div class="img-container">
   <% if @event.photo.attached? %>
   <div class="show-img">
@@ -17,101 +7,60 @@
   <div class="seed-img"><img src="<%= @event.photo_link %>" alt="" /></div>
   <% end %>
 </div>
-<div>
-  <div class="title">
-    <h1>
-      <%= @event.title %>
-    </h1>
+
+<div class="card-q">
+  <div class="card-q-min">
+    <h2><i class="far fa-pause-circle"></i> Queue estimation</h2>
+  </div>
+  <div class="card-q-infos">
     <% @very_last_queues.each do |very_last_queue| %>
-    <div class=qest>
-      <h5>Queue is about <strong><%= very_last_queue.waiting_time %>min</strong> <%= very_last_queue.created_at.strftime("at %l:%M%p")%>.</h5>
-    </div>
-    <% end %>
-    <h3>
-      <%= @user.nickname %>
-    </h3>
-
-
-     <!--  <h3>
-        <%= @event.category %>
-      </h3> -->
-      <h3>
-        <%= @event.location %>
-      </h3>
-    </div>
-    <div class="address">
-      <p>
-        <strong><%= @event.address %></strong>
-      </p>
-    </div>
-    <div class="date">
-     <p><strong>Starting on: <%= @event.start_time.strftime("%d/%m/%Y") %></strong></p>
-   </div>
-
-   <div class="line_up">
-    <p> <strong>Line up</strong><br>
-      <%= @event.line_up %>
-    </p>
-  </div>
-  <div class="description">
-    <p>
-      <%= @event.description %>
-    </p>
-    <h3>
-      <%= @event.price %>
-    </h3>
-
-    <h3>
-      <%= @event.end_time %>
-    </h3>
-  </div>
-  <h3>
-    <%= @event.tag_list %>
-  </h3>
-  <%= link_to favorite_text, event_wishlist_path(event: @event), method: :patch, id: "favorite_link", remote: true %>
-  <ul>
-    <% @related_events.each do |event| %>
-    <li>
-      <%= event.title %>
-      <% end %>
-    </li>
-  </ul>
-</div>
-<% if current_user.event_wishlists.find {|event_w| event_w.event_id =
-  @event.id} %>
-  <% else %>
+  <h2><%= very_last_queue.waiting_time %>min</h2>
   <% end %>
-  <div>
-    <% if policy(Event).destroy? %>
-    <p>
-      <%= link_to "Delete my event", event_path(@event), method: :delete, data:
-      { confirm: "Are you sure?"}, class: 'btn btn-danger'%>
-    </p>
-    <% end %>
-    <% if policy(Event).edit? %>
-    <p>
-      <%= link_to "Update my event", edit_event_path(@event), class: 'btn
-      btn-info'%>
-    </p>
-    <% end %>
   </div>
-</main>
-<div class="queue_est text-center">
-  <h2>Queue estimation</h2>
-  <% @last_queues.each do |last_queue| %>
-  <div class=qest>
-    <p>Queue of <strong>
-      <%= last_queue.waiting_time %>min</strong> on
-      <%= last_queue.created_at.strftime("%a %b %e at %l:%M%p")%> indicated by
-      <%= last_queue.user.email %>.</p>
+</div>
+<!-- <div class="title">
+    <h1><%= @event.title %></h1>
+</div> -->
+<div class="card-i">
+  <div class="card-i-l">
+    <h2><i class="fas fa-warehouse"></i> <strong> <%= @event.location %> </strong> <br><br>
+    <i class="fas fa-map-marker-alt"></i> <%= @event.address %></h2>
+  </div>
+  <div class="card-i-infos">
+    <span><%= @event.start_time.strftime("%a %d") %></span>
+  </div>
+</div>
+
+<div class="card-line">
+  <div class="card-line-l">
+    <h2>LINE-UP</h2>
+  </div>
+  <div class="card-line-infos">
+    <span><%= @event.line_up %></span>
+  </div>
+</div>
+<div id="accordion">
+  <div class="card-d">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0 text-center">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <p>Click to read the description</p>
+        </button>
+      </h5>
     </div>
-    <% end %>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+      <p><%= @event.description %></p></div>
+    </div>
   </div>
-  <div class="text-center">
+  </div>
+
+  <div class="qest text-center">
     <h2>Already in front of the club?</h2>
     <%= link_to new_event_queue_estimation_path(@event,
     @queue_estimation) do %>
-    <button type="button" class="btn btn-secondary ">Give a estimation of the queue
+    <button type="button" class="queue-btn btn btn-secondary ">Give a estimation of the queue
     </button>
     <% end %>
   </div>
@@ -142,3 +91,67 @@
         <% end %>
       </div>
     </div>
+
+
+<div>
+  <%= link_to favorite_text, event_wishlist_path(event: @event), method: :patch, id: "favorite_link", remote: true %>
+  <ul>
+    <% @related_events.each do |event| %>
+    <li>
+      <%= event.title %>
+      <% end %>
+    </li>
+  </ul>
+</div>
+<div>
+<% if current_user.event_wishlists.find {|event_w| event_w.event_id =
+  @event.id} %>
+  <% else %>
+  <% end %>
+</div>
+
+
+
+    <!-- FOLLOW PART TO IMPLEMENT LATER
+ -->    <!-- <div>
+  <%# if user_signed_in? && current_user != @user %>
+    <%# if current_user.following?(@user) %>
+    <%#= button_to  "Unfollow", follow_path(user_id: @user.id), method: :delete, class: 'btn btn-info'%>
+    <%# else  %>
+    <%#= button_to "Follow", follows_path(user_id: @user.id), class: 'btn btn-primary'%>
+    <%# end %>
+  <%# end %>
+</div> -->
+
+
+<!-- WAITING PUNDIT CORRECTION
+ -->
+<!-- <div>
+    <%# if policy(Event).destroy? %>
+    <p>
+      <%#= link_to "Delete my event", event_path(@event), method: :delete, data:
+      { confirm: "Are you sure?"}, class: 'btn btn-danger'%>
+    </p>
+    <%# end %>
+    <%# if policy(Event).edit? %>
+    <p>
+      <%#= link_to "Update my event", edit_event_path(@event), class: 'btn
+      btn-info'%>
+    </p>
+    <#% end %>
+  </div> -->
+
+
+<!-- TO THINK IF WE KEEP IT OR NOT
+ -->
+<!--   <div class="queue_est text-center">
+  <h2>Queue estimation</h2>
+  <%# @last_queues.each do |last_queue| %>
+  <div class=qest>
+    <p>Queue of <strong>
+      <%#= last_queue.waiting_time %>min</strong> on
+      <%#= last_queue.created_at.strftime("%a %b %e at %l:%M%p")%> indicated by
+      <%#= last_queue.user.email %>.</p>
+    </div>
+    <%# end %>
+  </div> -->
