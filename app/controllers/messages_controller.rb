@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   def new
     @message = Message.new(message_params)
+    authorize @message
   end
 
   def create

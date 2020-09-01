@@ -19,7 +19,7 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
-  margin: 10px 10px;
+  margin: 30px 10px;
   border: 2px solid #1EDD88;
 }
 
@@ -51,7 +51,7 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
-  margin: 10px 10px;
+  margin: 30px 10px;
   // border: 2px solid #1EDD88;
 }
 
@@ -88,12 +88,12 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
-  margin: 10px 10px;
+  margin: 30px 10px;
   // border: 2px solid #1EDD88;
 }
 
 .card-line h2 {
-  font-size: 12px;
+  font-size: 10px;
   writing-mode: vertical-lr;
   text-orientation: upright;
   color: white;
@@ -124,6 +124,27 @@
   font-family: 'Roboto', sans-serif;
 }
 
+#messages {
+  font-size: 14px;
+  color: white;
+  background-color: #121212;
+  padding: 20px;
+  border: 1px solid #ececec;
+  border-top: none;
+  border-bottom-width: 0;
+  max-height: calc(70vh - 200px - 45px - 61px - 30px);
+  overflow: scroll;
+  margin: 10px 10px;
+}
 
+#message_content {
+  background-color: #121212;
+  border-radius: 3px;
+}
+
+.form-control {
+  width: 90%;
+  margin-left: 20px;
+}
 
 
