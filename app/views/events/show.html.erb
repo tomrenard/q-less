@@ -8,34 +8,55 @@
   <% end %>
 </div>
 
-<div class="card-q">
-  <div class="card-q-min">
+<% @very_last_queues.each do |very_last_queue| %>
+  <% if very_last_queue.waiting_time < 30 %>
+     <div class="card-q">
+  <div class="card-q-min text-center">
     <h2><i class="far fa-pause-circle"></i> Queue estimation</h2>
   </div>
-  <div class="card-q-infos">
-    <% @very_last_queues.each do |very_last_queue| %>
+  <div class="card-q-infos text-center">
   <h2><%= very_last_queue.waiting_time %>min</h2>
-  <% end %>
   </div>
 </div>
+<% elsif very_last_queue.waiting_time > 60 %>
+<div class="card-q-l">
+  <div class="card-q-min text-center">
+    <h2><i class="far fa-pause-circle"></i> Queue estimation</h2>
+  </div>
+  <div class="card-q-infos text-center">
+  <h2><%= very_last_queue.waiting_time %>min</h2>
+  </div>
+</div>
+<% else %>
+<div class="card-q-ll">
+  <div class="card-q-min text-center">
+    <h2><i class="far fa-pause-circle"></i> Queue estimation</h2>
+  </div>
+  <div class="card-q-infos text-center">
+  <h2><%= very_last_queue.waiting_time %>min</h2>
+  </div>
+</div>
+  <% end %>
+<% end %>
+
 <!-- <div class="title">
     <h1><%= @event.title %></h1>
 </div> -->
 <div class="card-i">
-  <div class="card-i-l">
+  <div class="card-i-l text-center">
     <h2><i class="fas fa-warehouse"></i> <strong> <%= @event.location %> </strong> <br><br>
     <i class="fas fa-map-marker-alt"></i> <%= @event.address %></h2>
   </div>
-  <div class="card-i-infos">
+  <div class="card-i-infos text-center">
     <span><%= @event.start_time.strftime("%a %d") %></span>
   </div>
 </div>
 
 <div class="card-line">
   <div class="card-line-l">
-    <h2>LINE-UP</h2>
+    <h2>DJs</h2>
   </div>
-  <div class="card-line-infos">
+  <div class="card-line-infos text-center">
     <span><%= @event.line_up %></span>
   </div>
 </div>
@@ -65,6 +86,9 @@
     <% end %>
   </div>
   <br>
+
+<!-- OLD CHATROOM
+ -->
   <div id=chatrooomi>
     <h1>
       <%= @chatroom.name %>
@@ -86,14 +110,13 @@
         </div>
         <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
         <%=
-        f.input :content, label: false, placeholder: "Find some friends, ask for the timetable" %>
+        f.input :content, label: false, placeholder: "Let's chat" %>
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
         <% end %>
       </div>
-    </div>
 
 
-<div>
+<div class=text-center>
   <%= link_to favorite_text, event_wishlist_path(event: @event), method: :patch, id: "favorite_link", remote: true %>
   <ul>
     <% @related_events.each do |event| %>

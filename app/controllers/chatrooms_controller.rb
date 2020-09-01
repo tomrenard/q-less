@@ -2,11 +2,13 @@ class ChatroomsController < ApplicationController
   def show
     @chatroom = Chatroom.find(params[:id])
     @message = Message.new
+    authorize @chatroom
   end
 
   def new
     @event = Event.find(params[:event_id])
     @chatroom = Chatroom.new
+    authorize @chatroom
   end
 
   def create
@@ -18,6 +20,7 @@ class ChatroomsController < ApplicationController
     else
       render :new
     end
+    authorize @chatroom
   end
 
   private

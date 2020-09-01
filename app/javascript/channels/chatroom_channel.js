@@ -1,4 +1,5 @@
 import consumer from "./consumer";
+// import { scrollLastMessageIntoView } from "./scroll";
 
 const initChatroomCable = () => {
   const messagesContainer = document.getElementById('messages');
@@ -8,6 +9,10 @@ const initChatroomCable = () => {
     consumer.subscriptions.create({ channel: "ChatroomChannel", id: id }, {
       received(data) {
         messagesContainer.insertAdjacentHTML('beforeend', data);
+
+        const inputMessage = document.getElementById('message_content');
+        inputMessage.value = "";
+        // scrollLastMessageIntoView();
       },
     });
   }
