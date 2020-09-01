@@ -6,6 +6,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
+    # @event = Event.find(params[:id])
     @event_wishlists = current_user.event_wishlists
     @followings = current_user.followings
   end
