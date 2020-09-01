@@ -47,7 +47,7 @@ const initMapbox = () => {
         accessToken: mapboxgl.accessToken
       }),
     'top-left'
-    );
+    )
   }
 };
 
