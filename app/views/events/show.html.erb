@@ -65,6 +65,9 @@
     <% end %>
   </div>
   <br>
+
+<!-- OLD CHATROOM
+ -->
   <div id=chatrooomi>
     <h1>
       <%= @chatroom.name %>
@@ -86,11 +89,10 @@
         </div>
         <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
         <%=
-        f.input :content, label: false, placeholder: "Find some friends, ask for the timetable" %>
+        f.input :content, label: false, placeholder: "Let's chat" %>
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
         <% end %>
       </div>
-    </div>
 
 
 <div>
