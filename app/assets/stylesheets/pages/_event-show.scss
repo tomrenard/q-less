@@ -12,43 +12,118 @@
   width: 100%;
 }
 
-.title h1 {
-  font-size: 28px;
+.card-q {
+  overflow: hidden;
+  height: 120px;
+  background: #23262B;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  margin: 10px 10px;
+  border: 2px solid #1EDD88;
+}
+
+.card-q h2 {
+  font-size: 25px;
+  color: white;
+  font-family: 'Orbitron';
   font-weight: bold;
+  margin: 5px 5px;
+}
+
+.card-q-min {
+  padding-left: 5px;
+}
+
+
+.card-q .card-q-infos {
+  padding: 5px;
 }
 
 .title h3 {
-  font-size: 26px;
-  font-weight: bold;
-  font-style: italic;
-  text-align: center;
-}
-
-.address p {
-  text-align: center;
-}
-
-.date p {
-  text-align: center;
-}
-
-.line_up p {
-  text-align: center;
-}
-
-.description p {
-  font-size: 14px;
-  text-align: justify;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.qest p {
-  color: #FC5759;
-}
-
-#chatrooomi p {
   color: white;
 }
+
+.card-i {
+  overflow: hidden;
+  height: 120px;
+  // background: #23262B;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  margin: 10px 10px;
+  // border: 2px solid #1EDD88;
+}
+
+.card-i h2 {
+  font-size: 16px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  margin: 10px 15px 10px 0px;
+}
+
+.card-i span {
+  font-family: 'Orbitron';
+  font-size: 36px;
+  color: white;
+}
+
+.card-i p {
+  font-family: 'Orbitron';
+  font-size: 15px;
+  color: white;
+  padding: 5px 10px;
+}
+
+
+.card-i .card-i-i {
+  padding: 5px;
+}
+
+.card-line {
+  overflow: hidden;
+  height: 120px;
+  background: #23262B;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  margin: 10px 10px;
+  // border: 2px solid #1EDD88;
+}
+
+.card-line h2 {
+  font-size: 12px;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  padding-top: 30px;
+  padding-right: 8px;
+}
+
+.card-line span {
+  color: white;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+.card-d p  {
+  font-family: 'Roboto', sans-serif;
+  text-decoration: none;
+  color: white;
+}
+
+.qest h2 {
+  color: white;
+  font-family: 'Orbitron';
+}
+
+.queue-btn {
+  font-family: 'Roboto', sans-serif;
+}
+
+
 
 
