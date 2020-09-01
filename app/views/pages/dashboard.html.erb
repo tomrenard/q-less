@@ -1,12 +1,18 @@
-<h2 class="h1"> Favorited </h2>
+<h1 class="text-center"> Favorited </h1>
 
   <% @event_wishlists.each do |event_wishlist|%>
-    <div class="card-product-infos">
-    <%= event_wishlist.event.title %>
-    <%= event_wishlist.event.location %>
-    <%= event_wishlist.event.start_time %>
-    <%= event_wishlist.event.line_up %>
-    </div>
+   <div class="card-product">
+        <% if event_wishlist.event.photo.attached? %>
+          <div class="event-left-image"><%= cl_image_tag event_wishlist.event.photo.key, height: 300, width: 400, crop: :fit %></div>
+          <% end %>
+          <img src= <%= event_wishlist.event.photo_link %> />
+      <div class="card-product-infos card-index">
+        <%#= link_to event_path(event) do %>
+          <h3><%=event_wishlist.event.start_time.strftime("%d/%m/%Y")%></h3>
+          <p><strong><%= event_wishlist.event.title %></strong> at <%=event_wishlist.event.location%></p>
+        <%# end %>
+      </div>
+      </div>
   <% end  %>
 
 <h2> Followed </h2>
@@ -17,3 +23,4 @@
     <%= follow.nickname %>
     </div>
 <% end  %>
+
