@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def favorite_text
-    return @favorite_exists ? "UnFavorite" : "Favorite"
+    return @favorite_exists ? '<i class="fas fa-heart-broken"></i>' : '<i class="fas fa-heart"></i>'
   end
 
   def default_url_options
@@ -21,5 +21,3 @@ class ApplicationController < ActionController::Base
 
   helper_method :favorite_text
 end
-
-# sounds good

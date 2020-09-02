@@ -1,3 +1,5 @@
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+
 <h1>#<%= @chatroom.name %></h1>
 <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
   <% @chatroom.messages.each do |message| %>

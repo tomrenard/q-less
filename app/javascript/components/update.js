@@ -2,13 +2,13 @@ const initToggleFavorite = () => {
   const favLink = document.querySelector("#favorite_link")
   if (favLink) {
     favLink.addEventListener('click', (event) => {
-      if (favLink.innerText === "favorite") { // innerhtml
-        favLink.innerText = "Unfavorite"
+      if (favLink.innerHTML === '<i class="fas fa-heart"></i>') {
+        favLink.innerHTML = '<i class="fas fa-heart-broken"></i>'
       } else {
-        favLink.innerText = "Favorite"
+        favLink.innerHTML = '<i class="fas fa-heart"></i>'
       }
     })
   }
 }
 
-export { initToggleFavorite }
+export { initToggleFavorite };
