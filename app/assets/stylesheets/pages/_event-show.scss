@@ -193,3 +193,30 @@
   margin-left: 20px;
 }
 
+.mapboxgl-popup-content {
+  background: rgb(60,62,62);
+  background: linear-gradient(0deg, rgba(60,62,62,1) 0%, rgba(0,0,0,1) 100%);
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 5px 3px rgba(0, 0, 0, 0.1);
+  padding: 10px 10px 15px;
+  pointer-events: auto;
+}
+
+.mapboxgl-popup-content h5 {
+    color: white;
+    font-size: 18px;
+  }
+
+.mapboxgl-popup-content h6 {
+    color: white;
+    font-size: 16px;
+  }
+
+.mapboxgl-popup-content p {
+    color: white;
+    font-size: 14px;
+  }
+
