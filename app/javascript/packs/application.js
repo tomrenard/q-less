@@ -31,6 +31,8 @@ import { initMapbox } from '../plugins/init_mapbox';
 import { initAutocomplete } from '../plugins/init_autocomplete';
 import { initFlatPickr } from '../plugins/flat_pickr';
 import { initTouchIndex } from '../components/drag_index';
+import { initToggleFavorite } from '../components/update';
+
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -41,6 +43,8 @@ document.addEventListener('turbolinks:load', () => {
   initAutocomplete();
   initFlatPickr();
   initTouchIndex();
+  initToggleFavorite();
+
   // Call your functions here, e.g:
   // initSelect2();
 });
