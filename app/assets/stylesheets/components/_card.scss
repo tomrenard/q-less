@@ -23,18 +23,21 @@
   margin: 1rem;
   border-radius: 5px;
   opacity: 1;
+  text-align: left;
 }
 
 .card-product img {
-  height: 100%;
-  width: 150px;
+  width: 50%;
   object-fit: cover;
 }
 
 .card-product h2 {
-  font-size: 15px;
   font-weight: bold;
   margin: 0;
+  text-align: left;
+  font-family: 'Orbitron';
+  font-size: 20px;
+
 }
 
 .card-product p {
@@ -63,13 +66,24 @@
   color: #FC5759;
   color: white;
   font-size: 12px;
-  text-align: center;
+  text-align: left;
 }
 
 
 .card-product .card-product-infos p {
   color: white;
 }
+
+.card-product p {
+  font-size: 15px !important;
+}
+
+
+.card-product p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
 
 .card-trip {
   overflow: hidden;
@@ -115,6 +129,19 @@
   font-family: 'orbitron';
 }
 
-.card-product p {
-  font-size: 15px !important;
+.card-category {
+  background-image: url("https://source.unsplash.com/Tk7pycVBzq8");
+}
+
+.card-index {
+  display: block;
+  height: initial;
+  text-align: left;
+}
+.card-index h3 {
+  text-align: left;
+}
+.card-index img {
+  width: 100%;
+  height: 200px;
 }
