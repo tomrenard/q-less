@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
     return @favorite_exists ? "UnFavorite" : "Favorite"
   end
 
+  def default_url_options
+    { host: ENV["DOMAIN"] || "localhost:3000" }
+  end
+
   helper_method :favorite_text
 end
 
