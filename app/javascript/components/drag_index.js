@@ -3,7 +3,7 @@ const onTouchMove = (event) => {
   const windowHeight = window.innerHeight
   const y = event.touches[0].clientY
   const newTop = 100 * y / windowHeight
-  const top = newTop > 85? 84: newTop < 0? 1 : newTop
+  const top = newTop > 88? 87: newTop < 0? 1 : newTop
   container.style.top = top + "vh"
   console.log(top, container.style.top)
   }
