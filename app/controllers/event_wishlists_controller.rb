@@ -1,7 +1,6 @@
 class EventWishlistsController < ApplicationController
   def update
     @event_wishlist = EventWishlist.where(event:Event.find(params[:event]), user: current_user)
-    raise
     if @event_wishlist == []
       EventWishlist.create(event:Event.find(params[:event]), user: current_user)
       @event_wishlist_exit = true

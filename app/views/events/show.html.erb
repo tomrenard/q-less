@@ -116,7 +116,8 @@
 
 
 <div class=text-center>
-  <%= link_to favorite_text.html_safe, event_wishlist_path(event: @event), method: :patch, id: "favorite_link", remote: true %>
+  <%= link_to(favorite_text.html_safe, event_wishlist_path(event: @event), method: :patch, id: "favorite_link", remote: true) %>
+  <%#= link_to("favorite", event_wishlist_path(event: @event), method: :patch) %>
   <ul>
     <% @related_events.each do |event| %>
     <li>

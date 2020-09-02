@@ -1,6 +1,5 @@
 const initToggleFavorite = () => {
   const favLink = document.querySelector("#favorite_link")
-  console.log(favLink)
   if (favLink) {
     favLink.addEventListener('click', (event) => {
       if (favLink.innerHTML === '<i class="fas fa-heart"></i>') {
@@ -12,4 +11,4 @@ const initToggleFavorite = () => {
   }
 }
 
-export { initToggleFavorite }
+export { initToggleFavorite };
