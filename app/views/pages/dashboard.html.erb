@@ -5,16 +5,16 @@
   <% @event_wishlists.each do |event_wishlist|%>
    <div class="card-product">
         <% if event_wishlist.event.photo.attached? %>
-          <div class="background-card"><%= cl_image_tag event_wishlist.event.photo.key, height: 300, width: 400, crop: :fit %></div>
+          <div class="event-left-image"><%= cl_image_tag event_wishlist.event.photo.key, height: 300, width: 400, crop: :fit %></div>
           <% end %>
-          <img class="background-card" src= <%= event_wishlist.event.photo_link %> />
-          ::after
+          <img class="event-left-image" src= <%= event_wishlist.event.photo_link %> />
       <div class="card-product-infos card-index">
               <%#= link_to event_path(event) do %>
       <h3><%= event_wishlist.event.start_time.strftime("%d/%m/%Y")%></h3>
-      <h2><strong><%= event_wishlist.event.title %></strong></h2>
+      <p><strong><%=event_wishlist.event.title %></strong> at <%=event_wishlist.event.location%></p>
+     <!--  <h2><strong><%= event_wishlist.event.title %></strong></h2>
       <h2><%= event_wishlist.event.category %></h2>
-      <h2>at:  <%= event_wishlist.event.location %></h2>
+      <h2>at:  <%= event_wishlist.event.location %></h2> -->
       <p><% event_wishlist.event.tag_list.each do |tag| %>
         <%= link_to tag, tagged_path(tag: tag) %>
         <% end %></p>
