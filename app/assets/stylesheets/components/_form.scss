@@ -66,5 +66,26 @@
 }
 #reset-password {
   margin-left: 30px;
+
+}
+
+#event_date {
+  background: #121212 !important;
+  border: none;
+  font-family: sans-serif;
+  font-weight: normal;
+  font-size: 15px;
+  width: 87%;
+  color: #495057;
+}
+
+#query_word {
+  border: none;
+  font-family: sans-serif;
+  font-weight: normal;
+}
+
+.mapboxgl-ctrl-logo {
+  color: transparent !important;
 }
 
