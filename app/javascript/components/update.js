@@ -3,7 +3,7 @@ const initToggleFavorite = () => {
   console.log(favLink)
   if (favLink) {
     favLink.addEventListener('click', (event) => {
-      if (favLink.innerHTML === '<i class="fas fa-heart"></i>') { // innerhtml
+      if (favLink.innerHTML === '<i class="fas fa-heart"></i>') {
         favLink.innerHTML = '<i class="fas fa-heart-broken"></i>'
       } else {
         favLink.innerHTML = '<i class="fas fa-heart"></i>'
