@@ -105,8 +105,8 @@
   font-size: 16px;
   color: white;
   font-family: 'Roboto', sans-serif;
-  font-weight: bold;
-  margin: 10px 15px 10px 0px;
+  margin: 10px 15px 10px 15px;
+  text-align: left;
 }
 
 .card-i span {
@@ -145,13 +145,15 @@
   color: white;
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
-  padding-top: 30px;
-  padding-right: 8px;
+  margin: 10px 20px 10px 10px;
+
 }
 
 .card-line span {
   color: white;
   font-family: 'Roboto', sans-serif;
+  margin: 10px 10px 10px 10px;
+  height: 100%;
 }
 
 
@@ -168,6 +170,8 @@
 
 .queue-btn {
   font-family: 'Roboto', sans-serif;
+  background: rgb(67,72,80);
+  background: radial-gradient(circle, rgba(67,72,80,1) 0%, rgba(18,18,18,1) 100%);
 }
 
 #messages {
@@ -203,6 +207,7 @@
   box-shadow: 0 5px 3px rgba(0, 0, 0, 0.1);
   padding: 10px 10px 15px;
   pointer-events: auto;
+  opacity: 0.9;
 }
 
 .mapboxgl-popup-content h5 {

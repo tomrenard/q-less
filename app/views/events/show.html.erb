@@ -45,17 +45,17 @@
 </div> -->
 <div class="card-i">
   <div class="card-i-l text-center">
-    <h2><i class="fas fa-warehouse"></i>&nbsp;<strong> <%= @event.location %> </strong> <br><br>
-    <i class="fas fa-map-marker-alt"></i>&nbsp;<%= @event.address %></h2>
+    <h2><i class="fas fa-warehouse"></i>&nbsp;&nbsp;<strong> <%= @event.location %> </strong> <br><br>
+    <i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;<%= @event.address %></h2>
   </div>
-  <div class="card-i-infos text-center">
+  <div class="card-i-infos">
     <span><%= @event.start_time.strftime("%a %d") %></span>
   </div>
 </div>
 
 <div class="card-line">
   <div class="card-line-l">
-    <h2>DJs</h2>
+    <h2>LINE-UP</h2>
   </div>
   <div class="card-line-infos text-center">
     <span><%= @event.line_up %></span>
@@ -92,14 +92,12 @@
     <h1>
       <%= @chatroom.name %>
     </h1>
-    <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+      <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
       <% @chatroom.messages.each do |message| %>
       <div class="message-container" id="message-<%= message.id %>">
         <i class="author">
-          <span>
-            <%= message.user.nickname %></span>
             <small>
-              <%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+              <strong><%= message.user.nickname %> </strong> <%= message.created_at.strftime("%w/%d/%y at %l:%M%p") %></small>
             </i>
             <p>
               <%= message.content %>
