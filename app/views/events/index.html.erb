@@ -49,7 +49,7 @@ type="text/css"
 
     <% @events.each do |event| %>
 
-    <div class="card-product card-index">
+    <div class="card-product card-index position-relative">
       <% favorite_exists = EventWishlist.where(event: event, user: current_user).length > 0 %>
       <% if event.photo.attached? %>
       <div class="event-left-image"><%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fit %></div>
@@ -70,7 +70,7 @@ type="text/css"
       <div class="card-product-infos">
         <%= link_to event_path(event) do %>
         <h3><%=event.start_time.strftime("%d/%m/%Y")%></h3>
-        <p><strong><%=event.title %></strong> at <%=event.location%></p>
+        <p style="margin-right: 30px;"><strong><%=event.title %></strong> at <%=event.location%></p>
           <% end %>
         </div>
       </div>
