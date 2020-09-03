@@ -31,7 +31,6 @@ class EventsController < ApplicationController
     @message = Message.new
     @last_queues = @event.queue_estimations.last(3)
     @very_last_queues = @event.queue_estimations.last(1)
-    # console
   end
 
   def edit
