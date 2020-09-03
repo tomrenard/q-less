@@ -1,12 +1,12 @@
 <% content_for :meta_title, "Discover all types of events around your position in one click" %>
 <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
-
+<div class=media-display-home>
 <link
 rel="stylesheet"
 href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
 type="text/css"
 />
-
+<div class=media-map-container>
 <div
   id="map"
   style="width: 100vw; height: 100vh;"
@@ -15,7 +15,7 @@ type="text/css"
 </div>
 
 <button id="itinary" class="btn btn-default" style="z-index: 10000; position: absolute; padding: 0; border: none; top: 48px; right: 8px;"><i class="fas fa-directions fa-2x"></i></button>
-
+</div>
 <div class="container indexbackground" style="top: 50vh; ">
 
   <div id="touch" draggable>
@@ -76,5 +76,5 @@ type="text/css"
       </div>
     <% end %>
 
-
+</div>
   </div>
