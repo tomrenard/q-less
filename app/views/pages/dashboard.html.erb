@@ -3,7 +3,7 @@
 <div class="production-list__item">
 
   <% @event_wishlists.each do |event_wishlist|%>
-   <div class="card-product">
+   <div class="card-product card-index">
         <% if event_wishlist.event.photo.attached? %>
           <div class="event-left-image"><%= cl_image_tag event_wishlist.event.photo.key, height: 300, width: 400, crop: :fit %></div>
           <% end %>
