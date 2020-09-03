@@ -9,7 +9,7 @@
           <% end %>
           <img class="event-left-image" src= <%= event_wishlist.event.photo_link %> />
       <div class="card-product-infos card-index">
-              <%#= link_to event_path(event) do %>
+              <%= link_to event_path(event_wishlist.event) do %>
       <h3><%= event_wishlist.event.start_time.strftime("%d/%m/%Y")%></h3>
       <p><strong><%=event_wishlist.event.title %></strong> at <%=event_wishlist.event.location%></p>
      <!--  <h2><strong><%= event_wishlist.event.title %></strong></h2>
@@ -17,8 +17,8 @@
       <h2>at:  <%= event_wishlist.event.location %></h2> -->
       <p><% event_wishlist.event.tag_list.each do |tag| %>
         <%= link_to tag, tagged_path(tag: tag) %>
-        <% end %></p>
-        <%# end %>
+        <%end %></p>
+        <% end %>
       </div>
       </div>
   <% end  %>
