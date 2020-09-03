@@ -1,11 +1,16 @@
 const initToggleFavorite = () => {
   const favLink = document.querySelector("#favorite_link")
+  const selectHeart = document.querySelector("#heart")
   if (favLink) {
-    favLink.addEventListener('click', (event) => {
-      if (favLink.innerHTML === 'Save it') {
-        favLink.innerHTML = 'Unsave'
+    selectHeart.addEventListener('click', (event) => {
+      if (favLink.dataset.favorite == 'true') {
+        favLink.click()
+        selectHeart.innerHTML = '<i class="fas fa-heart fa-lg"></i>'
+        favLink.dataset.favorite = 'false'
       } else {
-        favLink.innerHTML = 'Save it'
+        favLink.click()
+        selectHeart.innerHTML = '<i class="fas fa-heart-broken fa-lg"></i>'
+        favLink.dataset.favorite = 'true'
       }
     })
   }
