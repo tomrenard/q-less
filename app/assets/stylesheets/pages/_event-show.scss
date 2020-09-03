@@ -225,3 +225,14 @@
     font-size: 12px;
   }
 
+  @media (min-width: 1000px) {
+  .media-display-show {
+    margin-left: 250px;
+    margin-right: 250px;
+    }
+
+  .card-i span {
+    margin-left: 20px;
+  }
+}
+
