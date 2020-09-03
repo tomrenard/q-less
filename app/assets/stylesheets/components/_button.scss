@@ -51,7 +51,15 @@
 
 .descripbtn {
   margin-bottom: 0px;
-  border: none !important;
+  font-size: 16px;
+}
+
+.btn-desc {
+  background-color: #121212;
+  font-family: 'Roboto', sans-serif;
+  text-decoration: none;
+  border-style: none;
+  margin-bottom: 25px;
 }
 
 .btn-link {
