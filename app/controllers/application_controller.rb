@@ -11,9 +11,9 @@ class ApplicationController < ActionController::Base
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
 
-  def favorite_text
-    return @favorite_exists ? 'Unsave' : 'Save it'
-  end
+  # def favorite_text
+   # return @favorite_exists ? false : true
+  # end
 
   def default_url_options
     { host: ENV["DOMAIN"] || "localhost:3000" }

@@ -23,7 +23,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @favorite_exists = EventWishlist.where(event: @event, user: current_user) == [] ? false : true
+    @favorite_exists = EventWishlist.where(event: @event, user: current_user).length > 0
     set_event
     @user = @event.user
     @related_events = @event.find_related_tags
@@ -31,6 +31,7 @@ class EventsController < ApplicationController
     @message = Message.new
     @last_queues = @event.queue_estimations.last(3)
     @very_last_queues = @event.queue_estimations.last(1)
+    console
   end
 
   def edit
