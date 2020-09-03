@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def favorite_text
-    return @favorite_exists ? '<i class="fas fa-heart-broken"></i>' : '<i class="fas fa-heart"></i>'
+    return @favorite_exists ? 'Unsave' : 'Save it'
   end
 
   def default_url_options

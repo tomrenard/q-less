@@ -116,6 +116,8 @@
 <div class=text-center>
   <%= link_to(favorite_text.html_safe, event_wishlist_path(event: @event), method: :patch, id: "favorite_link", remote: true) %>
   <%#= link_to("favorite", event_wishlist_path(event: @event), method: :patch) %>
+</div>
+
   <ul>
     <% @related_events.each do |event| %>
     <li>
@@ -123,7 +125,7 @@
       <% end %>
     </li>
   </ul>
-</div>
+
 <div>
 <% if current_user.event_wishlists.find {|event_w| event_w.event_id =
   @event.id} %>
