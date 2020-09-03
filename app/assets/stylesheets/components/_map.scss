@@ -12,3 +12,13 @@
   top: 0;
   left: 0;
 }
+
+@media (min-width: 560px) {
+  .media-map-container {
+    display: none;
+  }
+  .indexbackground {
+    position: relative !important;
+    top: 5vh !important;
+  }
+}
