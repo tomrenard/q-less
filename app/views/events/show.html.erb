@@ -2,8 +2,8 @@
 <div class=media-display-show>
 <div class="img-container">
   <% if @event.photo.attached? %>
-  <div class="show-img">
-    <%= cl_image_tag @event.photo.key, height: 300, width: 400, crop: :fit %>
+  <div class="seed-img">
+    <%= cl_image_tag @event.photo.key, crop: :fit %>
   </div>
   <% else %>
   <div class="seed-img"><img src="<%= @event.photo_link %>" alt="" /></div>
