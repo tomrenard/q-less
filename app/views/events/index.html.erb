@@ -51,9 +51,7 @@ type="text/css"
 
     <div class="card-product card-index position-relative">
       <% favorite_exists = EventWishlist.where(event: event, user: current_user).length > 0 %>
-      <% if event.photo.attached? %>
-      <div class="event-left-image"><%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fit %></div>
-      <% end %>
+
 
         <div style="display: none" id="favorite_link">
          <%= link_to @favorite_text, event_wishlist_path(event: event), method: :patch, data: {favorite: favorite_exists}, remote: true %>
@@ -65,8 +63,12 @@ type="text/css"
             <i class="fas fa-heart-broken fa-lg"></i>
           <% end %>
         </div>
-
+       <% if event.photo.attached? %>
+      <div class="event-left-image"><%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fit %></div>
+      <% else %>
       <img src= <%= event.photo_link %> />
+      <% end %>
+
       <div class="card-product-infos">
         <%= link_to event_path(event) do %>
         <h3><%=event.start_time.strftime("%d/%m/%Y")%></h3>

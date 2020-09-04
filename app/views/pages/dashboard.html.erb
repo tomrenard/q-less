@@ -5,9 +5,11 @@
   <% @event_wishlists.each do |event_wishlist|%>
    <div class="card-product card-index">
         <% if event_wishlist.event.photo.attached? %>
-          <div class="event-left-image"><%= cl_image_tag event_wishlist.event.photo.key, height: 300, width: 400, crop: :fit %></div>
-          <% end %>
+          <div class="event-left-image"><%= cl_image_tag event_wishlist.event.photo.key, crop: :fit %></div>
+          <% else %>
           <img class="event-left-image" src= <%= event_wishlist.event.photo_link %> />
+          <% end %>
+
       <div class="card-product-infos card-index">
               <%= link_to event_path(event_wishlist.event) do %>
       <h3><%= event_wishlist.event.start_time.strftime("%d/%m/%Y")%></h3>
