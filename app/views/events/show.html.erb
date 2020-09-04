@@ -156,22 +156,20 @@
 </div> -->
 
 
-<!-- WAITING PUNDIT CORRECTION
- -->
-<!-- <div>
-    <%# if policy(Event).destroy? %>
+
+  <div>
+    <% if policy(@event).destroy? %>
     <p>
-      <%#= link_to "Delete my event", event_path(@event), method: :delete, data:
-      { confirm: "Are you sure?"}, class: 'btn btn-danger'%>
+      <%= link_to ('<i class="fas fa-trash"></i>').html_safe, event_path(@event), method: :delete, data:
+      { confirm: "Are you sure?"}, class: 'btn'%>
     </p>
-    <%# end %>
-    <%# if policy(Event).edit? %>
+    <% end %>
+    <% if policy(@event).edit? %>
     <p>
-      <%#= link_to "Update my event", edit_event_path(@event), class: 'btn
-      btn-info'%>
+      <%= link_to ('<i class="fas fa-edit"></i>').html_safe, edit_event_path(@event), class: 'btn'%>
     </p>
-    <#% end %>
-  </div> -->
+    <% end %>
+  </div>
 
 
 <!-- TO THINK IF WE KEEP IT OR NOT

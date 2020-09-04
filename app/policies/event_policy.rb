@@ -10,7 +10,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def edit?
-    true
+    record.user == user
   end
 
   def show?
@@ -22,6 +22,6 @@ class EventPolicy < ApplicationPolicy
   end
 
   def destroy?
-    true
+    record.user == user
   end
 end
