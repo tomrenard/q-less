@@ -64,7 +64,7 @@ type="text/css"
           <% end %>
         </div>
        <% if event.photo.attached? %>
-      <div class="event-left-image"><%= cl_image_tag event.photo.key, height: 300, width: 400, crop: :fit %></div>
+      <div class="event-left-image"><%= cl_image_tag event.photo.key, crop: :fit %></div>
       <% else %>
       <img src= <%= event.photo_link %> />
       <% end %>
