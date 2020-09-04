@@ -22,7 +22,7 @@ const addMarkersToMap = (map, markers) => {
 const fitMapToMarkers = (map, markers) => {
   const bounds = new mapboxgl.LngLatBounds();
   markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
-  map.fitBounds(bounds, { padding: 70, maxZoom: 30 }); //decentrer with half screen puis recentrer when fullscreen
+  map.fitBounds(bounds, { padding: 70, maxZoom: 30, offset: [0,-80] }); //decentrer with half screen puis recentrer when fullscreen
 };
 
 const initMapbox = () => {
