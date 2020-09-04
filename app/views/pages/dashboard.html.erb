@@ -1,17 +1,16 @@
 <h1 class="text-center p-5"> Favorited </h1>
 <div class=media-display-home>
 <div class="production-list__item">
-
   <% @event_wishlists.each do |event_wishlist|%>
    <div class="card-product card-index position-relative">
-
     <% favorite_exists = EventWishlist.where(event: event_wishlist.event, user: current_user).length > 0 %>
-
     <% if event_wishlist.event.photo.attached? %>
-          <div class="event-left-image"><%= cl_image_tag event_wishlist.event.photo.key, crop: :fit %></div>
-          <% else %>
-          <img class="event-left-image" src= <%= event_wishlist.event.photo_link %> />
-          <% end %>
+        <div class="event-left-image">
+            <%= cl_image_tag event_wishlist.event.photo.key, crop: :fit %>
+        </div>
+    <% else %>
+        <img class="event-left-image" src=<%=event_wishlist.event.photo_link %> />
+    <% end %>
     <div style="display: none" id="favorite_link">
       <%= link_to @favorite_text, event_wishlist_path(event: event_wishlist.event), method: :patch, data: {favorite: favorite_exists}, remote: true %>
     </div>
@@ -22,7 +21,6 @@
         <i class="fas fa-heart-broken fa-lg"></i>
       <% end %>
     </div>
-
       <div class="card-product-infos card-index">
           <%= link_to event_path(event_wishlist.event) do %>
             <h3><%= event_wishlist.event.start_time.strftime("%d/%m/%Y")%></h3>
@@ -38,16 +36,12 @@
       </div>
     </div>
   <% end %>
-
-
-<!--  <h1 class="text-center p-5"> Followed </h1>
-
-
+<!-- <h1 class="text-center p-5"> Followed </h1>
   <#% @followings.each do |follow|%>
     <div class="card-product-infos">
     <#%= follow.email %>
     <#%= follow.nickname %>
     </div>
-<#% end  %>
+<#% end  %> -->
 </div>
 </div>
