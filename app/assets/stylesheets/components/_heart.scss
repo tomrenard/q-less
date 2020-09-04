@@ -1,12 +1,17 @@
 .fa-heart{
-  position: absolute !important;
+  position: absolute;
   bottom: 20px;
   right: 20px;
 }
 
 .fa-heart-broken {
-  position: absolute !important;
+  position: absolute;
   bottom: 20px;
   right: 20px;
 }
 
+#heart2 {
+  bottom: 0px !important;
+  position: absolute !important;
+  right: 20px;
+}
