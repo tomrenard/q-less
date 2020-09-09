@@ -13,7 +13,6 @@ const onTouchStart = (event) => {
 }
 
 const onTouchEnd = (event) => {
-  console.log(event)
   document.removeEventListener("touchmove", onTouchMove)
 }
 
