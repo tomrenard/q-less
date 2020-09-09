@@ -40,23 +40,10 @@
 </div>
   <% end %>
 <% end %>
-
 <!-- <div class="title">
     <h1><%= @event.title %></h1>
 </div> -->
-<div class="card-i" style="position: relative;">
-
-  <div style="display: none" id="favorite_link">
-    <%= link_to @favorite_text, event_wishlist_path(event: @event), method: :patch, id: "favorite_link", data: {favorite: @favorite_exists}, remote: true %>
-  </div>
-
-  <div class="text-center heartshow" id="heart" style="color: white">
-   <% if @favorite_exits %>
-      <i class="fas fa-heart-broken fa-lg"></i>
-    <% else %>
-      <i class="fas fa-heart fa-lg"></i>
-    <% end %>
-  </div>
+<div class="card-i">
 
 
   <div class="card-i-l text-center">
@@ -143,6 +130,20 @@
 </div>
 </div>
 
+<div class="container-heart" style="position: relative; width: 100%; height: 6px, margin-top: 20px; margin-bottom: 50px">
+
+ <div style="display: none" id="favorite_link">
+    <%= link_to @favorite_text, event_wishlist_path(event: @event), method: :patch, id: "favorite_link", data: {favorite: @favorite_exists}, remote: true %>
+  </div>
+
+  <div class="text-center heartshow" id="heart" style="color: white">
+   <% if @favorite_exits %>
+      <i class="fas fa-heart-broken fa-lg"></i>
+    <% else %>
+      <i class="fas fa-heart fa-lg"></i>
+    <% end %>
+  </div>
+</div>
 
     <!-- FOLLOW PART TO IMPLEMENT LATER
  -->    <!-- <div>
