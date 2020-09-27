@@ -114,36 +114,36 @@
         <% end %>
       </div>
 
-  <ul>
-    <% @related_events.each do |event| %>
+ <!--  <ul>
+    <#% @related_events.each do |event| %>
     <li>
-      <%= event.title %>
-      <% end %>
+      <%#= event.title %>
+      <#% end %>
     </li>
   </ul>
 
 <div>
-<% if current_user.event_wishlists.find {|event_w| event_w.event_id =
+<#% if current_user.event_wishlists.find {|event_w| event_w.event_id =
   @event.id} %>
-  <% else %>
-  <% end %>
+  <#% else %>
+  <#% end %>
 </div>
-</div>
+</div> -->
 
-<div class="container-heart" style="position: relative; width: 100%; height: 6px, margin-top: 20px; margin-bottom: 50px">
+<!-- <div class="container-heart" style="position: relative; width: 100%; height: 6px, margin-top: 20px; margin-bottom: 50px">
 
  <div style="display: none" id="favorite_link">
-    <%= link_to @favorite_text, event_wishlist_path(event: @event), method: :patch, id: "favorite_link", data: {favorite: @favorite_exists}, remote: true %>
+    <#%= link_to @favorite_text, event_wishlist_path(event: @event), method: :patch, id: "favorite_link", data: {favorite: @favorite_exists}, remote: true %>
   </div>
 
   <div class="text-center heartshow" id="heart" style="color: white">
-   <% if @favorite_exits %>
+   <#% if @favorite_exits %>
       <i class="fas fa-heart-broken fa-lg"></i>
-    <% else %>
+    <#% else %>
       <i class="fas fa-heart fa-lg"></i>
-    <% end %>
+    <#% end %>
   </div>
-</div>
+</div> -->
 
     <!-- FOLLOW PART TO IMPLEMENT LATER
  -->    <!-- <div>
