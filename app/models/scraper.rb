@@ -7,16 +7,49 @@ require 'date'
 class Scraper
   def scrape_event_urls
     date = Date.today
+    urls_array = []
     berlin_url = "https://www.residentadvisor.net/events/de/berlin/week/#{date}"
-    html = open(berlin_url)
-    doc = Nokogiri::HTML(html)
-    events = doc.css('div.bbox').css('.event-title>a')
+    paris_url = "https://www.residentadvisor.net/events/fr/paris/week/#{date}"
+    london_url = "https://www.residentadvisor.net/events/uk/london/week/#{date}"
+    uk_north_url = "https://www.residentadvisor.net/events/uk/north/week/#{date}"
+    fr_west_url = "https://www.residentadvisor.net/events/fr/west/week/#{date}"
+    fr_southeast_url = "https://www.residentadvisor.net/events/fr/southeast/week/#{date}"
+    fr_southwest_url = "https://www.residentadvisor.net/events/fr/southwest/week/#{date}"
+    fr_north_url = "https://www.residentadvisor.net/events/fr/north/week/#{date}"
+    fr_east_url = "https://www.residentadvisor.net/events/fr/east/week/#{date}"
+    fr_central_url = "https://www.residentadvisor.net/events/fr/central/week/#{date}"
+    fr_frenchriviera_url = "https://www.residentadvisor.net/events/fr/frenchriviera/week/#{date}"
+    es_barcelona_url = "https://www.residentadvisor.net/events/es/barcelona/week/#{date}"
+    es_madrid_url = "https://www.residentadvisor.net/events/es/madrid/week/#{date}"
+    es_ibiza_url = "https://www.residentadvisor.net/events/es/ibiza/week/#{date}"
+    it_north_url = "https://www.residentadvisor.net/events/it/north/week/#{date}"
+    nl_amsterdam_url = "https://www.residentadvisor.net/events/nl/amsterdam/week/#{date}"
+    urls_array << berlin_url
+    urls_array << paris_url
+    urls_array << fr_west_url
+    urls_array << fr_southeast_url
+    urls_array << fr_southwest_url
+    urls_array << fr_north_url
+    urls_array << fr_east_url
+    urls_array << fr_central_url
+    urls_array << fr_frenchriviera_url
+    urls_array << london_url
+    urls_array << uk_north_url
+    urls_array << es_barcelona_url
+    urls_array << es_madrid_url
+    urls_array << es_ibiza_url
+    urls_array << it_north_url
+    urls_array << nl_amsterdam_url
     event_urls = []
-    events.each do |event|
-      url = event.attribute('href').value
-      event_urls << url
+    urls_array.each do |url_array|
+      html = open(url_array)
+      doc = Nokogiri::HTML(html)
+      events = doc.css('div.bbox').css('.event-title>a')
+      events.each do |event|
+        url = event.attribute('href').value
+        event_urls << url
+      end
     end
-
     scrape_event_pages(event_urls)
   end
 
@@ -28,7 +61,6 @@ class Scraper
       doc = Nokogiri::HTML(html)
       title = doc.css('#sectionHead h1').text
       location = doc.css('#detail').css('.wide').css('.cat-rev').text.gsub("\n", "")
-
       regexp_d = /^(.*?2020)/
       info_date = doc.css('#detail').css('li a').text
       starting_date = info_date.match(regexp_d)
@@ -52,7 +84,8 @@ class Scraper
         line_up: line_up,
         description: description
       }
-      event_info[:address] = address[1].lstrip unless address.nil? || address[0].include?("Secret") || address[0].exclude?("Berlin")
+      event_info[:address] = address[1].lstrip unless address.nil?
+      # || address[0].include?("Secret") || address[0].exclude?("Berlin")
       event_info[:start_time] = starting_date[1] unless starting_date.nil?
       event_info[:start_time] = Date.parse(event_info[:start_time]).strftime('%Y-%m-%d')
       event_info[:user] = User.first
@@ -71,6 +104,6 @@ class Scraper
 
       events_list << event_info
     end
-    events_list
+    p events_list
   end
 end
