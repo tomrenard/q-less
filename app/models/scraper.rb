@@ -61,9 +61,10 @@ class Scraper
       doc = Nokogiri::HTML(html)
       title = doc.css('#sectionHead h1').text
       location = doc.css('#detail').css('.wide').css('.cat-rev').text.gsub("\n", "")
-      regexp_d = /^(.*?2020)/
+      regexp_2020 = /^(.*?2020)/
+      regexp_2021 = /^(.*?2021)/
       info_date = doc.css('#detail').css('li a').text
-      starting_date = info_date.match(regexp_d)
+      starting_date = info_date.match(regexp_2020) || info_date.match(regexp_2021)
 
       line_up = doc.css('.lineup').text.gsub("\n", "")
       description = doc.css('.left').css('p')[1].text.gsub("\n", "")
@@ -104,6 +105,6 @@ class Scraper
 
       events_list << event_info
     end
-    p events_list
   end
 end
+
