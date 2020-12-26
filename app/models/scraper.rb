@@ -92,7 +92,7 @@ class Scraper
       event_info[:user] = User.first
 
       if img_urls[0].nil?
-        event_info[:photo_link] = "https://source.unsplash.com/featured/?club"
+        event_info[:photo_link] = "https://source.unsplash.com/featured/?nightclub"
       else
         event_info[:photo_link] = img_urls[0]
       end
@@ -105,6 +105,7 @@ class Scraper
 
       events_list << event_info
     end
+    p events_list
   end
 end
 
