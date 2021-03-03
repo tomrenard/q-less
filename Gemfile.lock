@@ -239,6 +239,13 @@ GEM
     unf_ext (0.0.7.7)
     warden (1.2.8)
       rack (>= 2.0.6)
+    watir (6.18.0)
+      regexp_parser (>= 1.2, < 3)
+      selenium-webdriver (>= 3.8)
+    watir-rails (2.2.2)
+      rack
+      rails
+      watir (>= 6.0.0.beta4)
     web-console (4.0.4)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -292,6 +299,8 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
   tzinfo-data
+  watir
+  watir-rails
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
