@@ -15,7 +15,7 @@ class Scraper
     lks = doc.css('.Link__AnchorWrapper-k7o46r-1.cBCLIt')
     lks.each do |lk|
       url = lk.attribute('href').value
-      locs << url if url.include?('events/us/miami')
+      locs << url if url.include?('events/de/berlin')
     end
     b.close
     generate_url(locs)
