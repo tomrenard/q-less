@@ -17,39 +17,38 @@ class Scraper
       url = lk.attribute('href').value
       locs << url if url.include?('events/us/miami')
     end
-    generate_url(locs)
     b.close
+    generate_url(locs)
   end
 
   def generate_url(locs)
     urls = []
     locs.each do |loc|
       date = Date.today
-      dates = [date]
+      dates = [date, date + 7]
       dates.each do |d|
         url = "https://ra.co#{loc}?week=#{d}"
         urls << url
       end
     end
-    urls =
     scrape_event_url(urls)
   end
 
   def scrape_event_url(urls)
+    events_urls = []
     urls.each do |url|
       b = Watir::Browser.new
       b.goto(url)
       html = (open(b.url, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE, 'User-Agent' => 'opera'))
       doc = Nokogiri::HTML(html)
-      links = doc.css('.Box-omzyfs-0.sc-AxjAm.kOicxR').search('a')
-      events_urls = []
+      links = doc.css('.Box-omzyfs-0.bFNVvf').search('a')
       links.each do |link|
         url = link.attribute('href').value
         events_urls << url if url.include?('event')
       end
-      scrape_event_content(events_urls)
       b.close
     end
+    scrape_event_content(events_urls)
   end
 
   def scrape_event_content(events_urls)
@@ -89,13 +88,12 @@ class Scraper
         # promoter: prom,
         description: des.empty? || des.nil? ? desc_stg : des,
         user: User.first,
-        photo_link: img_urls[0] || 'https://source.unsplash.com/featured/?nightclub'
-        # price: price
+        photo_link: img_urls[0] || 'https://source.unsplash.com/featured/?nightclub',
+        # price: price.nil? ? 'Take 15 just in case' : price
       }
       events << event_info
     end
-    events
+    return events
   end
 end
-
 
