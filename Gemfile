@@ -31,7 +31,7 @@ gem 'pry', '~> 0.13.1'
 gem 'watir'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
+gem 'bootsnap', '>= 1.7.3', require: false
 
 gem 'devise'
 gem 'jquery-rails'
