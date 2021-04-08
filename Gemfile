@@ -26,6 +26,10 @@ gem 'acts-as-taggable-on', '~> 6.0'
 gem 'nokogiri'
 gem 'pry', '~> 0.13.1'
 
+gem 'watir'
+gem 'selenium-webdriver'
+gem 'webdrivers'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -59,10 +63,6 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
-  gem "watir-rails"
-  gem 'watir'
-  gem 'webdrivers'
   # Easy installation and use of web drivers to run system tests with browsers
 end
 

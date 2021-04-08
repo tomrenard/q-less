@@ -1,17 +1,16 @@
 require 'date'
 require 'nokogiri'
 require 'open-uri'
-require 'watir'
-require 'webdrivers'
 require 'selenium-webdriver'
+require 'watir'
 
 class Scraper
   def scrape_location
     locs = []
-    browser = Watir::Browser.new
+    browser = Watir::Browser.new :chrome
     url = 'https://ra.co/sitemap'
     browser.goto(url)
-    html = (open(b.url, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE, 'User-Agent' => 'opera'))
+    html = (open(browser.url, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE, 'User-Agent' => 'opera'))
     doc = Nokogiri::HTML(html)
     lks = doc.css('.Link__AnchorWrapper-k7o46r-1.cBCLIt')
     lks.each do |lk|
@@ -40,7 +39,7 @@ class Scraper
     urls.each do |url|
       browser = Watir::Browser.new
       browser.goto(url)
-      html = (open(b.url, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE, 'User-Agent' => 'opera'))
+      html = (open(browser.url, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE, 'User-Agent' => 'opera'))
       doc = Nokogiri::HTML(html)
       links = doc.css('.Box-omzyfs-0.bFNVvf').search('a')
       links.each do |link|
@@ -97,4 +96,3 @@ class Scraper
     return events
   end
 end
-
