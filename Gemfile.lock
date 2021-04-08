@@ -302,7 +302,7 @@ DEPENDENCIES
   watir
   watir-rails
   web-console (>= 3.3.0)
-  webdrivers (~> 4.6)
+  webdrivers
   webpacker (~> 4.0)
 
 RUBY VERSION

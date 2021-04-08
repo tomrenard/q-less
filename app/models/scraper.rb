@@ -3,13 +3,14 @@ require 'nokogiri'
 require 'open-uri'
 require 'watir'
 require 'webdrivers'
+require 'selenium-webdriver'
 
 class Scraper
   def scrape_location
     locs = []
-    b = Watir::Browser.new
+    browser = Watir::Browser.new
     url = 'https://ra.co/sitemap'
-    b.goto(url)
+    browser.goto(url)
     html = (open(b.url, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE, 'User-Agent' => 'opera'))
     doc = Nokogiri::HTML(html)
     lks = doc.css('.Link__AnchorWrapper-k7o46r-1.cBCLIt')
@@ -17,7 +18,7 @@ class Scraper
       url = lk.attribute('href').value
       locs << url if url.include?('events/de/berlin')
     end
-    b.close
+    browser.close
     generate_url(locs)
   end
 
@@ -37,8 +38,8 @@ class Scraper
   def scrape_event_url(urls)
     events_urls = []
     urls.each do |url|
-      b = Watir::Browser.new
-      b.goto(url)
+      browser = Watir::Browser.new
+      browser.goto(url)
       html = (open(b.url, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE, 'User-Agent' => 'opera'))
       doc = Nokogiri::HTML(html)
       links = doc.css('.Box-omzyfs-0.bFNVvf').search('a')
@@ -46,7 +47,7 @@ class Scraper
         url = link.attribute('href').value
         events_urls << url if url.include?('event')
       end
-      b.close
+      browser.close
     end
     scrape_event_content(events_urls)
   end

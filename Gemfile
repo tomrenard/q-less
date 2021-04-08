@@ -28,7 +28,6 @@ gem 'pry', '~> 0.13.1'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-gem 'watir'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.7.3', require: false
@@ -39,8 +38,6 @@ gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'cloudinary', '~> 1.12.0'
-
-gem 'webdrivers', '~> 4.6'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
@@ -64,6 +61,8 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem "watir-rails"
+  gem 'watir'
+  gem 'webdrivers'
   # Easy installation and use of web drivers to run system tests with browsers
 end
 
