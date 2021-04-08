@@ -1,111 +1,99 @@
+require 'date'
 require 'nokogiri'
 require 'open-uri'
-require 'pry'
-require 'resolv-replace'
-require 'date'
+require 'watir'
+require 'webdrivers'
 
 class Scraper
-  def scrape_event_urls
-    date = Date.today
-    urls_array = []
-    berlin_url = "https://www.residentadvisor.net/events/de/berlin/week/#{date}"
-    paris_url = "https://www.residentadvisor.net/events/fr/paris/week/#{date}"
-    london_url = "https://www.residentadvisor.net/events/uk/london/week/#{date}"
-    uk_north_url = "https://www.residentadvisor.net/events/uk/north/week/#{date}"
-    fr_west_url = "https://www.residentadvisor.net/events/fr/west/week/#{date}"
-    fr_southeast_url = "https://www.residentadvisor.net/events/fr/southeast/week/#{date}"
-    fr_southwest_url = "https://www.residentadvisor.net/events/fr/southwest/week/#{date}"
-    fr_north_url = "https://www.residentadvisor.net/events/fr/north/week/#{date}"
-    fr_east_url = "https://www.residentadvisor.net/events/fr/east/week/#{date}"
-    fr_central_url = "https://www.residentadvisor.net/events/fr/central/week/#{date}"
-    fr_frenchriviera_url = "https://www.residentadvisor.net/events/fr/frenchriviera/week/#{date}"
-    es_barcelona_url = "https://www.residentadvisor.net/events/es/barcelona/week/#{date}"
-    es_madrid_url = "https://www.residentadvisor.net/events/es/madrid/week/#{date}"
-    es_ibiza_url = "https://www.residentadvisor.net/events/es/ibiza/week/#{date}"
-    it_north_url = "https://www.residentadvisor.net/events/it/north/week/#{date}"
-    nl_amsterdam_url = "https://www.residentadvisor.net/events/nl/amsterdam/week/#{date}"
-    urls_array << berlin_url
-    urls_array << paris_url
-    urls_array << fr_west_url
-    urls_array << fr_southeast_url
-    urls_array << fr_southwest_url
-    urls_array << fr_north_url
-    urls_array << fr_east_url
-    urls_array << fr_central_url
-    urls_array << fr_frenchriviera_url
-    urls_array << london_url
-    urls_array << uk_north_url
-    urls_array << es_barcelona_url
-    urls_array << es_madrid_url
-    urls_array << es_ibiza_url
-    urls_array << it_north_url
-    urls_array << nl_amsterdam_url
-    event_urls = []
-    urls_array.each do |url_array|
-      html = open(url_array)
-      doc = Nokogiri::HTML(html)
-      events = doc.css('div.bbox').css('.event-title>a')
-      events.each do |event|
-        url = event.attribute('href').value
-        event_urls << url
-      end
+  def scrape_location
+    locs = []
+    b = Watir::Browser.new
+    url = 'https://ra.co/sitemap'
+    b.goto(url)
+    html = (open(b.url, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE, 'User-Agent' => 'opera'))
+    doc = Nokogiri::HTML(html)
+    lks = doc.css('.Link__AnchorWrapper-k7o46r-1.cBCLIt')
+    lks.each do |lk|
+      url = lk.attribute('href').value
+      locs << url if url.include?('events/de/berlin')
     end
-    scrape_event_pages(event_urls)
+    b.close
+    generate_url(locs)
   end
 
-  def scrape_event_pages(event_urls)
-    events_list = []
-    event_urls.each do |event_url|
-      url = "https://www.residentadvisor.net#{event_url}"
-      html = open(url)
-      doc = Nokogiri::HTML(html)
-      title = doc.css('#sectionHead h1').text
-      location = doc.css('#detail').css('.wide').css('.cat-rev').text.gsub("\n", "")
-      regexp_2020 = /^(.*?2020)/
-      regexp_2021 = /^(.*?2021)/
-      info_date = doc.css('#detail').css('li a').text
-      starting_date = info_date.match(regexp_2020) || info_date.match(regexp_2021)
-
-      line_up = doc.css('.lineup').text.gsub("\n", "")
-      description = doc.css('.left').css('p')[1].text.gsub("\n", "")
-
-      regexp_a = /.*<br>(.*)<br>.*/
-      address_html = doc.search('#detail').search('li.wide').inner_html
-      address = address_html.match(regexp_a)
-
-      img_urls = []
-      img_links = doc.css('.flyer a')
-      img_links.each do |img_link|
-        img_url = img_link.attribute('href').value
-        img_urls << "https://www.residentadvisor.net#{img_url}"
+  def generate_url(locs)
+    urls = []
+    locs.each do |loc|
+      date = Date.today
+      dates = [date, date + 7]
+      dates.each do |d|
+        url = "https://ra.co#{loc}?week=#{d}"
+        urls << url
       end
-
-      event_info = {
-        location: location,
-        line_up: line_up,
-        description: description
-      }
-      event_info[:address] = address[1].lstrip unless address.nil?
-      # || address[0].include?("Secret") || address[0].exclude?("Berlin")
-      event_info[:start_time] = starting_date[1] unless starting_date.nil?
-      event_info[:start_time] = Date.parse(event_info[:start_time]).strftime('%Y-%m-%d')
-      event_info[:user] = User.first
-
-      if img_urls[0].nil?
-        event_info[:photo_link] = "https://source.unsplash.com/featured/?nightclub"
-      else
-        event_info[:photo_link] = img_urls[0]
-      end
-
-      if event_info[:location] == "Sage Beach Berlin"
-        event_info[:title] = location
-      else
-        event_info[:title] = title
-      end
-
-      events_list << event_info
     end
-    p events_list
+    scrape_event_url(urls)
+  end
+
+  def scrape_event_url(urls)
+    events_urls = []
+    urls.each do |url|
+      b = Watir::Browser.new
+      b.goto(url)
+      html = (open(b.url, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE, 'User-Agent' => 'opera'))
+      doc = Nokogiri::HTML(html)
+      links = doc.css('.Box-omzyfs-0.bFNVvf').search('a')
+      links.each do |link|
+        url = link.attribute('href').value
+        events_urls << url if url.include?('event')
+      end
+      b.close
+    end
+    scrape_event_content(events_urls)
+  end
+
+  def scrape_event_content(events_urls)
+    events = []
+    events_urls.each do |events_url|
+      url = "https://ra.co/#{events_url}"
+      html = (open(url, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE, 'User-Agent' => 'opera'))
+      doc = Nokogiri::HTML(html)
+      title = doc.css('.Text-sc-1t0gn2o-0.lYqGv').text.gsub("\n", '').gsub("\r", '')
+      title2 = doc.css('.Text-sc-1t0gn2o-0.llxwqv').text.gsub("\n", '').gsub("\r", '')
+      location = doc.css('.Text-sc-1t0gn2o-0.Link__StyledLink-k7o46r-0.hvqKqA').first || 'Unknown location'
+      ad = doc.css('.Grid__GridStyled-sc-1l00ugd-0.hTDtOT.grid').css('.Text-sc-1t0gn2o-0.dhoduX')
+      start_date = doc.css('.Text-sc-1t0gn2o-0.Link__StyledLink-k7o46r-0.hvqKqA').last.text.gsub("\n", '').gsub("\r", '')
+      start_h = doc.css('.Text-sc-1t0gn2o-0.dhoduX').slice(1).text
+      end_h = doc.css('.Text-sc-1t0gn2o-0.dhoduX').slice(3).text
+      line_up = doc.css('.Text-sc-1t0gn2o-0.CmsContent__StyledText-g7gf78-0').text.gsub("\n", '').gsub("\r", '') # warning
+      prom = doc.css('.Text-sc-1t0gn2o-0.dhoduX').slice(4).text.gsub("\n", '').gsub("\r", '')
+      age = doc.css('.Box-omzyfs-0.kXpspU>span').text.include?('ageD')
+      age ? 'You better take 15 bucks, just in case' : price = doc.css('.Text-sc-1t0gn2o-0.dhoduX').last.text # warning
+      des = doc.css('.Text-sc-1t0gn2o-0.EventDescription__BreakText-a2vzlh-0.hPALEa').text.gsub("\n", '').gsub("\r", '')
+      img_urls = []
+      img_links = doc.css('.FullWidthStyle-sc-4b98ap-0.htnFjY>img')
+      img_links.each do |img_link|
+        img_url = img_link.attribute('src').value
+        img_urls << img_url.to_s
+      end
+      desc_stg = 'Oups, looks like the description is secret or someone was lazy here...'
+      reg_h = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/
+      event_info = {
+        title: title.empty? ? title2 : title,
+        location: location.text,
+        address: ad.empty? || ad.nil? ? 'Hmmm good luck, you should guess' : ad.first.text.gsub("\r", '').gsub("\n", ''),
+        start_time: start_date,
+        # start_h: start_h.match(reg_h)[0],
+        # end_h: end_h.match(reg_h)[0],
+        line_up: line_up,
+        # promoter: prom,
+        description: des.empty? || des.nil? ? desc_stg : des,
+        user: User.first,
+        photo_link: img_urls[0] || 'https://source.unsplash.com/featured/?nightclub',
+        # price: price.nil? ? 'Take 15 just in case' : price
+      }
+      events << event_info
+    end
+    return events
   end
 end
 

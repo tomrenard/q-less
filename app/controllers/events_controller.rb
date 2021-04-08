@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @events = Event.order('event_date_time')
+    @events = Event.order(:start_time)
     @events = policy_scope(Event).geocoded
 
     if params[:query_word].present?
