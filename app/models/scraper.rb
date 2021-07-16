@@ -12,11 +12,12 @@ class Scraper
     browser.goto(url)
     html = (open(browser.url, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE, 'User-Agent' => 'opera'))
     doc = Nokogiri::HTML(html)
-    lks = doc.css('.Link__AnchorWrapper-k7o46r-1.cBCLIt')
+    lks = doc.css('.Link__AnchorWrapper-k7o46r-1.nrxMV')
     lks.each do |lk|
       url = lk.attribute('href').value
       locs << url if url.include?('events/de/berlin')
     end
+    p locs
     browser.close
     generate_url(locs)
   end
@@ -61,7 +62,7 @@ class Scraper
       title2 = doc.css('.Text-sc-1t0gn2o-0.llxwqv').text.gsub("\n", '').gsub("\r", '')
       location = doc.css('.Text-sc-1t0gn2o-0.Link__StyledLink-k7o46r-0.hvqKqA').first || 'Unknown location'
       ad = doc.css('.Grid__GridStyled-sc-1l00ugd-0.hTDtOT.grid').css('.Text-sc-1t0gn2o-0.dhoduX')
-      start_date = doc.css('.Text-sc-1t0gn2o-0.Link__StyledLink-k7o46r-0.hvqKqA').last.text.gsub("\n", '').gsub("\r", '')
+      start_date = doc.css('.Text-sc-1t0gn2o-0 Link__StyledLink-k7o46r-0.hpyRNz').last.text.gsub("\n", '').gsub("\r", '')
       start_h = doc.css('.Text-sc-1t0gn2o-0.dhoduX').slice(1).text
       end_h = doc.css('.Text-sc-1t0gn2o-0.dhoduX').slice(3).text
       line_up = doc.css('.Text-sc-1t0gn2o-0.CmsContent__StyledText-g7gf78-0').text.gsub("\n", '').gsub("\r", '') # warning
@@ -92,6 +93,7 @@ class Scraper
         # price: price.nil? ? 'Take 15 just in case' : price
       }
       events << event_info
+      p events
     end
     return events
   end
